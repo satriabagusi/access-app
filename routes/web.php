@@ -1,5 +1,6 @@
 <?php
 
+use App\DailyCheckUp;
 use App\Department;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\ArduinoController;
@@ -54,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/input-dcu', [DailyCheckUpsController::class, 'create']);
     Route::post('/dashboard/input-dcu', [DailyCheckUpsController::class, 'store'])->name('input-dcu');
+    Route::get('/dashboard/history/dcu', [DailyCheckUpsController::class, 'index']);
+    Route::get('/dashboard/history/dcu/download/', [DailyCheckUpsController::class, 'exportDCU']);
 
     Route::get('/dashboard/employee', [EmployeesController::class, 'index']);
     Route::get('/dashboard/employee/add', [EmployeesController::class, 'create']);
@@ -68,6 +71,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/safetytalk', [DailyCheckUpsController::class, 'safetytalk']);
     Route::post('/dashboard/safetytalk', [DailyCheckUpsController::class, 'submitSafetytalk'])->name('SafetytalkCheck');
+
+    Route::get('/dashboard/master-access-card', [AccessController::class, 'masterCard']);
+    Route::get('/dashboard/master-access-card/add', [AccessController::class, 'addMasterCard']);
+    Route::post('/dashboard/master-access-card/add', [AccessController::class, '_addMasterCard'])->name('addMasterCard');
+    Route::get('/dashboard/master-access/card/{id}', [AccessController::class, 'removeMasterCard']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });

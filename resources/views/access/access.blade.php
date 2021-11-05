@@ -18,22 +18,22 @@
                 <div class="card-body">
                   <div class="row justify-content-center text-start">
                       <div class="col-md-auto">
-                          <p class="h4">Nama Pegawai</p>
-                          <p class="h4">Nomor Pegawai</p>
-                          <p class="h4">Bagian/Fungsi</p>
-                          <p class="h4">Status</p>
+                          <p class="h3">Nama Pegawai</p>
+                          <p class="h3">Nomor Pegawai</p>
+                          <p class="h3">Bagian/Fungsi</p>
+                          <p class="h3">Status</p>
                       </div>
                       <div class="col-md-auto">
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
                       </div>
                       <div class="col-md-auto">
-                          <p class="h4" id="name">-----</p>
-                          <p class="h4" id="employee_number">-----</p>
-                          <p class="h4" id="department">-----</p>
-                          <p class="h4" id="fit_status">-----</p>
+                          <p class="h3" id="name">-----</p>
+                          <p class="h3" id="employee_number">-----</p>
+                          <p class="h3" id="department">-----</p>
+                          <p class="h3" id="fit_status">-----</p>
                       </div>
                   </div>
                 </div>

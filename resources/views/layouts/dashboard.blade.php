@@ -18,6 +18,8 @@
     {{-- <link rel="stylesheet" src="{{asset('vendors/bootstrap-select/css/bootstrap-select.css')}}"> --}}
 
     <link rel="stylesheet" href="{{asset('vendors/sweetalert2/css/sweetalert2.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/datetimepicker/css/tempus-dominus.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/datetimepicker/css/daterangepicker.css')}}">
 
     <style>
         body {
@@ -101,6 +103,29 @@
                                         Departemen
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="@yield('access-master')" href="{{URL::to('/dashboard/master-access-card')}}">
+                                        Kartu Akses Master
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item @yield('history') has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="clock" width="20"></i>
+                                <span>History</span>
+                            </a>
+                            <ul class="submenu @yield('history')">
+                                <li>
+                                    <a class="@yield('dcu-history')" href="{{URL::to('/dashboard/history/dcu')}}">
+                                        Daily Check Up
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="@yield('access-history')" href="{{URL::to('/dashboard/department')}}">
+                                        Akses Area Terbatas
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endif
@@ -168,6 +193,7 @@
         </div>
     </div>
     <script src="{{asset('vendors/jquery/jquery-3.6.0.js')}}"></script>
+    <script src="{{asset('vendors/moment/moment.min.js')}}"></script>
     <script src="{{asset('js/feather-icons/feather.min.js')}}"></script>
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     {{-- <script src="{{asset('js/bootstrap.bundle.js')}}"></script> --}}
@@ -182,6 +208,8 @@
     <script src="{{asset('js/script.js')}}"></script>
 
     <script src="{{asset('vendors/jquery-mask/jquery.mask.js')}}"></script>
+    <script src="{{asset('vendors/datetimepicker/js/tempus-dominus.js')}}"></script>
+    <script src="{{asset('vendors/datetimepicker/js/daterangepicker.js')}}"></script>
 
 
     @stack('scripts')

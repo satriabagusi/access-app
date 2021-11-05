@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Access_user;
 use App\DailyCheckUp;
 use App\Employee;
+use App\Exports\DailyCheckUpsExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DailyCheckUpsController extends Controller
 {
@@ -21,7 +23,19 @@ class DailyCheckUpsController extends Controller
      */
     public function index()
     {
-        //
+        $dcu = DailyCheckUp::with(['employees.departments'])->paginate(10);
+        return view('admin.dailychekup-history', compact('dcu'));
+    }
+
+    public function exportDCU(Request $request){
+        $month = $request->month;
+        // return $request->all();
+        if($request){
+            return Excel::download(new DailyCheckUpsExport($request), 'daily_check_up_report-'.Carbon::now()->toDateString().'.csv');
+        }else{
+            $month = Carbon::now()->month;
+            return Excel::download(new DailyCheckUpsExport($month), 'daily_check_up_report-'.Carbon::now()->toDateString().'.csv');
+        }
     }
 
     /**

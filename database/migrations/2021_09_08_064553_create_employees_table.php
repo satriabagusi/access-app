@@ -18,7 +18,8 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->char('employee_number', 6);
             $table->string('uuid_card', 12);
-            $table->string('division');
+            $table->string('division')->nullable();
+            $table->string('company')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('department_id');
             $table->timestamps();
