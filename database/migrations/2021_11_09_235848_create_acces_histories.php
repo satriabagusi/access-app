@@ -13,7 +13,7 @@ class CreateAccesHistories extends Migration
      */
     public function up()
     {
-        Schema::create('acces_histories', function (Blueprint $table) {
+        Schema::create('access_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('uuid_card');
             $table->integer('access_status');
