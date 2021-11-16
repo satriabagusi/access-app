@@ -31,10 +31,10 @@ class DailyCheckUpsController extends Controller
         $month = $request->month;
         // return $request->all();
         if($request){
-            return Excel::download(new DailyCheckUpsExport($request), 'daily_check_up_report-'.Carbon::now()->toDateString().'.csv');
+            return Excel::download(new DailyCheckUpsExport($request), 'daily_check_up_report-'.Carbon::now()->toDateString().'.xlsx');
         }else{
             $month = Carbon::now()->month;
-            return Excel::download(new DailyCheckUpsExport($month), 'daily_check_up_report-'.Carbon::now()->toDateString().'.csv');
+            return Excel::download(new DailyCheckUpsExport($month), 'daily_check_up_report-'.Carbon::now()->toDateString().'.xlsx');
         }
     }
 

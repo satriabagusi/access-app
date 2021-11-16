@@ -108,6 +108,11 @@
                                         Kartu Akses Master
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="@yield('add-users')" href="{{URL::to('/dashboard/add-user')}}">
+                                        Akses Login
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-item @yield('history') has-sub">

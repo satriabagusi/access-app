@@ -2,6 +2,7 @@
 
 use App\DailyCheckUp;
 use App\Department;
+use App\Exports\DailyCheckUpsExport;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\ArduinoController;
 use App\Http\Controllers\AuthController;
@@ -43,6 +44,7 @@ Route::get('/data/display/container', [ArduinoController::class, 'uidContainer']
 
 //MODULE/ARDUINO CONTROLLER
 Route::get('/modul/data', [ArduinoController::class, 'getAccess']);
+Route::get('/modul/data/tap', [ArduinoController::class, 'storeAccessHistory']);
 Route::post('/modul/display/data', [ArduinoController::class, 'getUid']);
 Route::post('/modul/safetytalk', [DailyCheckUpsController::class, 'safetyTalkCheck']);
 
@@ -52,6 +54,9 @@ Route::get('/data/dcu/employee', [EmployeesController::class, 'checkEmployee']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PagesController::class, 'dashboard']);
+
+    Route::get('/dashboard/add-user', [AuthController::class, 'addUser']);
+    Route::post('/dashboard/add-user', [AuthController::class, '_addUser'])->name('addUser');
 
     Route::get('/dashboard/input-dcu', [DailyCheckUpsController::class, 'create']);
     Route::post('/dashboard/input-dcu', [DailyCheckUpsController::class, 'store'])->name('input-dcu');

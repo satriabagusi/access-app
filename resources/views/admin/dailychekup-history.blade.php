@@ -12,7 +12,7 @@
                     <div class="col">
                         <h4 class="card-title">Data Daily Check Up</h4>
                     </div>
-                    <div class="col-6">
+                    <div class="col-auto">
 
                         <form method="GET" action="{{URL::to('/dashboard/history/dcu/download/')}}" class="form-group">
                             <div class="form-group has-icon-right">
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-sm btn-primary" type="submit">Export Selected</button>
-                            <a href="{{URL::to('/dashboard/history/dcu/download/')}}" class="float-end ml-50 btn btn-primary">Export all to CSV</a>
+                            <a href="{{URL::to('/dashboard/history/dcu/download/')}}" class="float-end ml-50 btn btn-primary">Export all to Excel</a>
                           </form>
                     </div>
                 </div>
@@ -39,22 +39,26 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>No Pegawai</th>
                                   <th>Nama Pegawai</th>
+                                  <th>Suhu</th>
+                                  <th>Tekanan darah</th>
                                   <th>Nama Departemen</th>
                                   <th>Divisi</th>
                                   <th>Nama Perusahaan</th>
+                                  <th>No Pegawai</th>
                                 </tr>
                             </thead>
                         <tbody>
                             @foreach ($dcu as $item)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->employees->employee_number}}</td>
                                     <td>{{$item->employees->name}}</td>
+                                    <td>{{$item->temperature}}</td>
+                                    <td>{{$item->blood_pressure}}</td>
                                     <td>{{$item->employees->departments->department}}</td>
                                     <td>{{$item->employees->division}}</td>
                                     <td>{{$item->employees->company}}</td>
+                                    <td>{{$item->employees->employee_number}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

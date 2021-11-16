@@ -16,16 +16,15 @@ class ArduinoController extends Controller
         if($request){
             // return $request->id;
             $access = Access_user::where('uuid_card', $request->uid)->first();
-            // echo $data;
-            // return ;
-            if($access){
-                // $data = Employee::where('uuid_card', $request->uid)->first();
-                echo "<Status=1>";
-                $this->getUid($request);
-            }else{
-                echo "<Status=0>";
-                $this->getUid($request);
-            }
+            echo "<Status=".$access->status.">";
+            // if($access){
+            //     // $data = Employee::where('uuid_card', $request->uid)->first();
+            //     echo "<Status=1>";
+            //     $this->getUid($request);
+            // }else{
+            //     echo "<Status=0>";
+            //     $this->getUid($request);
+            // }
         }
     }
 
@@ -37,6 +36,27 @@ class ArduinoController extends Controller
             Storage::put('public/container/getUID.php', $write);
         }else{
             return Response::json(['status' => 404, 'message' => 'Invalid Parameter']);
+        }
+    }
+
+    public function storeAccessHistory(Request $request){
+        if($request){
+            $access = Access_user::where('uuid_card', $request->uid)->first();
+            if($access){
+                if($request->status == 1 && $access->status == 1){
+                    $update = Access_user::where('uuid_card', $request->uid)
+                    ->update(['status' => 2]);
+                    return $update;
+                }else if($request->status == 2 && $access->status == 2){
+                    $update = Access_user::where('uuid_card', $request->uid)
+                    ->update(['status' => 1]);
+                    return $update;
+                }else{
+                    return "Failed!";
+                }
+            }else{
+                return "Access not Granted!";
+            }
         }
     }
 }

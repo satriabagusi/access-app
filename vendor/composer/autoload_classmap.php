@@ -12,6 +12,7 @@ return array(
     'App\\Department' => $baseDir . '/app/Department.php',
     'App\\Employee' => $baseDir . '/app/Employee.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Exports\\DailyCheckUpsExport' => $baseDir . '/app/Exports/DailyCheckUpsExport.php',
     'App\\Http\\Controllers\\AccessController' => $baseDir . '/app/Http/Controllers/AccessController.php',
     'App\\Http\\Controllers\\ArduinoController' => $baseDir . '/app/Http/Controllers/ArduinoController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
