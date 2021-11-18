@@ -23,7 +23,11 @@
 <style>
     body {
         font-family: 'Quicksand', sans-serif;
-        background: #e0ebf3
+        /* background: #e0ebf3; */
+        min-height:100%;
+        background:url('/img/bg-display.jpg') rgba(0, 72, 255, 0.433);
+        background-size:cover;
+        background-blend-mode: multiply;
     }
 </style>
 

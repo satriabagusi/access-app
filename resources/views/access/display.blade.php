@@ -38,7 +38,7 @@
     </div>
     <div class="col mb-3">
         <div class="h-100 p-5 text-white bg-danger rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalUnfit">
-            <h4 class="text-white">Pegawai Fit</h4>
+            <h4 class="text-white">Pegawai Unfit</h4>
             <p class="display-5">
                 <i class="fas fa-temperature-high"></i>
                 {{$total_unfit}}
