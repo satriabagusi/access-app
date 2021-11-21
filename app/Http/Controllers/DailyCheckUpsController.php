@@ -81,6 +81,7 @@ class DailyCheckUpsController extends Controller
             $employee = Employee::where('uuid_card', $request->uuid_card)->first();
             $dcu = DailyCheckUp::where('employee_id', $employee->id)->latest()->first();
             // return $dcu;
+
             if($dcu && Carbon::now()->diffInHours($dcu->created_at) < 8){
                 return redirect(URL::to('/dashboard/input-dcu'))->with('error', 'Pegawai sudah melakukan Daily Check Up per 8 jam.');
             }else{
@@ -88,7 +89,6 @@ class DailyCheckUpsController extends Controller
                 if($checkAccess){
                     if($checkAccess->status == 0 || $checkAccess->dcu_check == 0){
                         if($employee){
-
                             DB::beginTransaction();
                             try {
                                 if($checkAccess && $checkAccess->safetytalk_check == 1){

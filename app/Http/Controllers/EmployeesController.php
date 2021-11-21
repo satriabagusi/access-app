@@ -51,7 +51,7 @@ class EmployeesController extends Controller
             'employee_number' => 'required|numeric|digits_between:6,12',
             'department_id' => 'required',
             'division' => 'required|alpha_num',
-            'company' => 'required|alpha_num',
+            'company' => 'required',
         ],
         [
             'uuid_card.required' => 'Nomor Kartu kosong.',
@@ -65,7 +65,6 @@ class EmployeesController extends Controller
             'division.required' => 'Bagian/Fungsi kosong.',
             'division.alpha_num' => 'Format penulisan Bagian/Fungsi tidak sesuai',
             'company.required' => 'Nama Perusahaan kosong.',
-            'company.alpha_num' => 'Format penulisan tidak sesuai'
         ]
         );
 

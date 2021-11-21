@@ -115,6 +115,8 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
+
                         <li class="sidebar-item @yield('history') has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="clock" width="20"></i>
@@ -133,7 +135,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
 
                         </li>
 
