@@ -1,5 +1,6 @@
 <?php
 
+use App\Access_history;
 use App\DailyCheckUp;
 use App\Department;
 use App\Exports\DailyCheckUpsExport;
@@ -81,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/master-access-card/add', [AccessController::class, 'addMasterCard']);
     Route::post('/dashboard/master-access-card/add', [AccessController::class, '_addMasterCard'])->name('addMasterCard');
     Route::get('/dashboard/master-access/card/{id}', [AccessController::class, 'removeMasterCard']);
+    Route::get('/dashboarad/history/access', [AccessController::class, 'index']);
+    Route::get('/dashboarad/history/access/download', [AccessController::class, 'exportAccess']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });

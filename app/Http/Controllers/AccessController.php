@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Access_history;
 use App\Access_user;
 use App\DailyCheckUp;
+use App\Exports\AccessHistoryExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AccessController extends Controller
 {
     //
+
+    public function index(){
+        $access_history = Access_history::with(['employees.departments'])->paginate(10);
+        // return $access_history;
+        return view('admin.access-history', compact('access_history'));
+    }
 
     public function display(){
         $total_dcu = DailyCheckUp::where('created_at', Carbon::today())->count();
@@ -85,6 +94,17 @@ class AccessController extends Controller
                 }else{
                     return redirect(URL::to('/dashboard/master-access-card'))->with('error', 'Gagal menghapus data.');
                 }
+        }
+    }
+
+    public function exportAccess(Request $request){
+        $month = $request->month;
+        // return $request->all();
+        if($request){
+            return Excel::download(new AccessHistoryExport($request), 'access_history_report-'.Carbon::now()->toDateString().'.xlsx');
+        }else{
+            $month = Carbon::now()->month;
+            return Excel::download(new AccessHistoryExport($month), 'access_history_report-'.Carbon::now()->toDateString().'.xlsx');
         }
     }
 

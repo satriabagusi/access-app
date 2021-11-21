@@ -128,11 +128,13 @@
                                         Daily Check Up
                                     </a>
                                 </li>
+                                @if (Auth::user()->user_role_id == 1)
                                 <li>
-                                    <a class="@yield('access-history')" href="{{URL::to('/dashboard/department')}}">
+                                    <a class="@yield('access-history')" href="{{URL::to('/dashboarad/history/access')}}">
                                         Akses Area Terbatas
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
 
