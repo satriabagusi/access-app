@@ -119,7 +119,7 @@
         $(document).ready(function(){
 
             // JQUERY MASK
-            $('#blood_pressure').mask('000/00');
+            $('#blood_pressure').mask('000/000');
             $('#temperature').mask('00,00');
 
             //DISABLE ENTER KEY
@@ -184,7 +184,7 @@
             var timer = null;
         $('#uuid_card').on('keyup', function (e) {
             clearTimeout(timer);
-            timer = setTimeout(parseDec, 45);
+            timer = setTimeout(parseDec, 100);
         });
 
         function parseDec() {

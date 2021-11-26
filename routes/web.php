@@ -13,6 +13,11 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Request;
+use App\Access_user;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +32,24 @@ use Illuminate\Support\Facades\URL;
 
 Route::get('/', function(){
     return redirect(URL::to('/dashboard'));
+});
+
+Route::get('/storagelink', function(){
+    return Artisan::call('storage:link');
+});
+
+Route::get('/deleteAccess', function(Request $request) {
+    if($request){
+        if($request->_token == "bqbunilybun"){
+            // return "ok";
+            $delete = Access_user::where('created_at', '>=',Carbon::now()->subHours(8))->delete();
+            return $delete;
+        }else{
+            return "not ok";
+        }
+    }else{
+        return URL::to('/');
+    }
 });
 
 Route::middleware(['guest'])->group(function(){

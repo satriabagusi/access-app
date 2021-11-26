@@ -133,7 +133,7 @@ class DailyCheckUpsController extends Controller
                             'fit_status' => $request->fit_status,
                         ]);
 
-                        if($employee->department_id !== 3){
+                        if($employee->department_id == 1){
                             Access_user::create([
                                 'uuid_card' => $request->uuid_card,
                                 'dcu_check' => 1,
@@ -143,6 +143,7 @@ class DailyCheckUpsController extends Controller
                         }else{
                             Access_user::create([
                                 'uuid_card' => $request->uuid_card,
+                                'safetytalk_check' => 0,
                                 'dcu_check' => 1,
                             ]);
                         }

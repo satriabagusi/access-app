@@ -50,7 +50,7 @@ class EmployeesController extends Controller
             'name' => 'required',
             'employee_number' => 'required|numeric|digits_between:6,12',
             'department_id' => 'required',
-            'division' => 'required|alpha_num',
+            'division' => 'required',
             'company' => 'required',
         ],
         [
@@ -63,7 +63,6 @@ class EmployeesController extends Controller
             'employee_number.digits_between' => 'Format Nomor Pegawai tidak sesuai.',
             'department_id.required' => 'Departemen belum terpilih.',
             'division.required' => 'Bagian/Fungsi kosong.',
-            'division.alpha_num' => 'Format penulisan Bagian/Fungsi tidak sesuai',
             'company.required' => 'Nama Perusahaan kosong.',
         ]
         );

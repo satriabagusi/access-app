@@ -101,7 +101,7 @@
         var timer = null;
         $('#uuid_card').on('keyup', function (e) {
             clearTimeout(timer);
-            timer = setTimeout(parseDec, 45);
+            timer = setTimeout(parseDec, 100);
         });
 
         function parseDec() {

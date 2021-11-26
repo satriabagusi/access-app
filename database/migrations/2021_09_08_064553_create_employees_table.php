@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->char('employee_number', 6);
+            $table->char('employee_number', 12)->nullable();
             $table->string('uuid_card', 12);
             $table->string('division')->nullable();
             $table->string('company')->nullable();

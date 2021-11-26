@@ -294,6 +294,10 @@
                 $("#jam").text(jam);
                 $("#tanggal").text(date);
             }
+            
+            setTimeout(function(){
+                window.location.reload(1);
+            }, 25000);
         })
     </script>
 @endpush
