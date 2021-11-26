@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Access_user;
 use App\DailyCheckUp;
 use App\Employee;
+use App\Exports\DailyCheckUpsExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DailyCheckUpsController extends Controller
 {
@@ -21,7 +23,19 @@ class DailyCheckUpsController extends Controller
      */
     public function index()
     {
-        //
+        $dcu = DailyCheckUp::with(['employees.departments'])->paginate(10);
+        return view('admin.dailychekup-history', compact('dcu'));
+    }
+
+    public function exportDCU(Request $request){
+        $month = $request->month;
+        // return $request->all();
+        if($request){
+            return Excel::download(new DailyCheckUpsExport($request), 'daily_check_up_report-'.Carbon::now()->toDateString().'.xlsx');
+        }else{
+            $month = Carbon::now()->month;
+            return Excel::download(new DailyCheckUpsExport($month), 'daily_check_up_report-'.Carbon::now()->toDateString().'.xlsx');
+        }
     }
 
     /**
@@ -67,6 +81,7 @@ class DailyCheckUpsController extends Controller
             $employee = Employee::where('uuid_card', $request->uuid_card)->first();
             $dcu = DailyCheckUp::where('employee_id', $employee->id)->latest()->first();
             // return $dcu;
+
             if($dcu && Carbon::now()->diffInHours($dcu->created_at) < 8){
                 return redirect(URL::to('/dashboard/input-dcu'))->with('error', 'Pegawai sudah melakukan Daily Check Up per 8 jam.');
             }else{
@@ -74,7 +89,6 @@ class DailyCheckUpsController extends Controller
                 if($checkAccess){
                     if($checkAccess->status == 0 || $checkAccess->dcu_check == 0){
                         if($employee){
-
                             DB::beginTransaction();
                             try {
                                 if($checkAccess && $checkAccess->safetytalk_check == 1){
@@ -119,7 +133,7 @@ class DailyCheckUpsController extends Controller
                             'fit_status' => $request->fit_status,
                         ]);
 
-                        if($employee->department_id !== 3){
+                        if($employee->department_id == 1){
                             Access_user::create([
                                 'uuid_card' => $request->uuid_card,
                                 'dcu_check' => 1,
@@ -129,6 +143,7 @@ class DailyCheckUpsController extends Controller
                         }else{
                             Access_user::create([
                                 'uuid_card' => $request->uuid_card,
+                                'safetytalk_check' => 0,
                                 'dcu_check' => 1,
                             ]);
                         }

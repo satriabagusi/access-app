@@ -3,14 +3,58 @@
 
 @section('content')
 
-<div class="row justify-content-center mt-5" >
+<div class="row justify-content-center mt-2" >
     <p hidden id="getUid"></p>
-    <div class="col mb-3 mt-5">
+    <div class="row justify-content-center text-center mb-2">
+        <div class="col-6 bg-white p-3 rounded-3 shadow">
+            <h3 id="tanggal"></h3>
+            <h3 id="jam" class=""></h3>
+        </div>
+    </div>
+    <div class="row justify-content-center text-center mb-2">
+            <div class="col mb-3">
+        <div class="h-100 p-5 text-white bg-primary rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalDCU">
+            <h3 class="text-white">Sudah DCU</h3>
+            <h2 class="text-white">
+            <i class="fas fa-heartbeat"></i>
+                {{$total_dcu}}
+            </h2>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="h-100 p-5 text-white bg-warning rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalRestrictArea">
+            <h3 class="text-white">Area Terbatas</h3>
+            <h2 class="text-white">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{$total_restrictArea}}
+            </h2>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="h-100 p-5 text-white bg-success rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalFit">
+            <h3 class="text-white">Pegawai Fit</h3>
+            <h2 class="text-white">
+                <i class="fas fa-temperature-high"></i>
+                {{$total_fit}}
+            </h2>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="h-100 p-5 text-white bg-danger rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalUnfit">
+            <h3 class="text-white">Pegawai Unfit</h3>
+            <h2 class="text-white">
+                <i class="fas fa-temperature-high"></i>
+                {{$total_unfit}}
+            </h2>
+        </div>
+    </div>
+    </div>
+    <div class="col mb-3 ">
         <div class="h-100 p-5 bg-white rounded-3 text-center shadow">
-            <img class="img-fluid" src="{{asset('img/Pertamina_Logo.svg')}}" width="550px" alt="">
+            <img class="img-fluid" src="{{asset('img/Pertamina_Logo.svg')}}" width="400px" alt="">
             <h4>Pertamina Fuel Terminal Ujung Berung</h4>
-            <div class="mt-5">
-                <img id="img_access" class="img-fluid" src="{{asset('img/tap.png')}}" width="360px" alt="">
+            <div class="mt-1">
+                <img id="img_access" class="img-fluid" src="{{asset('img/tap.png')}}" width="220px" alt="">
                 <p id="text_access" class="blink">Tempelkan kartu anda pada reader</p>
             </div>
             <div class="mt-2">
@@ -18,22 +62,22 @@
                 <div class="card-body">
                   <div class="row justify-content-center text-start">
                       <div class="col-md-auto">
-                          <p class="h4">Nama Pegawai</p>
-                          <p class="h4">Nomor Pegawai</p>
-                          <p class="h4">Bagian/Fungsi</p>
-                          <p class="h4">Status</p>
+                          <p class="h3">Nama Pegawai</p>
+                          <p class="h3">Nomor Pegawai</p>
+                          <p class="h3">Bagian/Fungsi</p>
+                          <p class="h3">Status</p>
                       </div>
                       <div class="col-md-auto">
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
-                          <p class="h4">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
+                          <p class="h3">:</p>
                       </div>
                       <div class="col-md-auto">
-                          <p class="h4" id="name">-----</p>
-                          <p class="h4" id="employee_number">-----</p>
-                          <p class="h4" id="department">-----</p>
-                          <p class="h4" id="fit_status">-----</p>
+                          <p class="h3" id="name">-----</p>
+                          <p class="h3" id="employee_number">-----</p>
+                          <p class="h3" id="department">-----</p>
+                          <p class="h3" id="fit_status">-----</p>
                       </div>
                   </div>
                 </div>
@@ -51,10 +95,55 @@
     <script>
 
         $(document).ready(function(){
+            
+            setInterval(clockUpdate, 1000);
+            var day = new Array(7);
+            day[0] = "Minggu";
+            day[1] = "Senin";
+            day[2] = "Selasa";
+            day[3] = "Rabu";
+            day[4] = "Kamis";
+            day[5] = "Jum'at";
+            day[6] = "Sabtu";
+
+            var month = new Array(12);
+            month[0] = "Januari";
+            month[1] = "Februari";
+            month[2] = "Maret";
+            month[3] = "April";
+            month[4] = "Mei";
+            month[5] = "Juni";
+            month[6] = "Juli";
+            month[7] = "Agustus";
+            month[8] = "September";
+            month[9] = "Oktober";
+            month[10] = "November";
+            month[11] = "Desember";
+
+            clockUpdate();
+
+            function clockUpdate(){
+                var clock = new Date ();
+
+                function addZero(i) {
+                    if (i < 10) {i = "0" + i}
+                    return i;
+                }
+
+                let hari = day[clock.getDay()];
+                let bulan = month[clock.getMonth()];
+                let jam = addZero(clock.getHours()) + ":" + addZero(clock.getMinutes()) + ":" + addZero(clock.getSeconds());
+
+                let date = hari + ", " + clock.getDate() + " " + bulan + " " + clock.getFullYear()
+                $("#jam").text(jam);
+                $("#tanggal").text(date);
+            }
+            
             var uid_paragraph = $('#getUid');
-            uid_paragraph.load("{{URL::to('/storage/container/getUID.php')}}");
+            // console.log("{{Storage::url('container/getUID.php')}}")
+            uid_paragraph.load("{{Storage::url('container/getUID.php')}}");
             setInterval(function(){
-                uid_paragraph.load("{{URL::to('/storage/container/getUID.php')}}");
+                uid_paragraph.load("{{Storage::url('container/getUID.php')}}");
             }, 1000);
 
             // this.observer= new MutationObserver(function(mutations) {
@@ -151,6 +240,10 @@
                 });
               }
             }
+            
+            setTimeout(function(){
+                window.location.reload(1);
+            }, 60000);
         });
     </script>
 @endpush

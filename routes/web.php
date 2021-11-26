@@ -1,6 +1,9 @@
 <?php
 
+use App\Access_history;
+use App\DailyCheckUp;
 use App\Department;
+use App\Exports\DailyCheckUpsExport;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\ArduinoController;
 use App\Http\Controllers\AuthController;
@@ -10,6 +13,11 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Request;
+use App\Access_user;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +32,24 @@ use Illuminate\Support\Facades\URL;
 
 Route::get('/', function(){
     return redirect(URL::to('/dashboard'));
+});
+
+Route::get('/storagelink', function(){
+    return Artisan::call('storage:link');
+});
+
+Route::get('/deleteAccess', function(Request $request) {
+    if($request){
+        if($request->_token == "bqbunilybun"){
+            // return "ok";
+            $delete = Access_user::where('created_at', '>=',Carbon::now()->subHours(8))->delete();
+            return $delete;
+        }else{
+            return "not ok";
+        }
+    }else{
+        return URL::to('/');
+    }
 });
 
 Route::middleware(['guest'])->group(function(){
@@ -42,6 +68,7 @@ Route::get('/data/display/container', [ArduinoController::class, 'uidContainer']
 
 //MODULE/ARDUINO CONTROLLER
 Route::get('/modul/data', [ArduinoController::class, 'getAccess']);
+Route::get('/modul/data/tap', [ArduinoController::class, 'storeAccessHistory']);
 Route::post('/modul/display/data', [ArduinoController::class, 'getUid']);
 Route::post('/modul/safetytalk', [DailyCheckUpsController::class, 'safetyTalkCheck']);
 
@@ -52,8 +79,13 @@ Route::get('/data/dcu/employee', [EmployeesController::class, 'checkEmployee']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PagesController::class, 'dashboard']);
 
+    Route::get('/dashboard/add-user', [AuthController::class, 'addUser']);
+    Route::post('/dashboard/add-user', [AuthController::class, '_addUser'])->name('addUser');
+
     Route::get('/dashboard/input-dcu', [DailyCheckUpsController::class, 'create']);
     Route::post('/dashboard/input-dcu', [DailyCheckUpsController::class, 'store'])->name('input-dcu');
+    Route::get('/dashboard/history/dcu', [DailyCheckUpsController::class, 'index']);
+    Route::get('/dashboard/history/dcu/download/', [DailyCheckUpsController::class, 'exportDCU']);
 
     Route::get('/dashboard/employee', [EmployeesController::class, 'index']);
     Route::get('/dashboard/employee/add', [EmployeesController::class, 'create']);
@@ -68,6 +100,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/safetytalk', [DailyCheckUpsController::class, 'safetytalk']);
     Route::post('/dashboard/safetytalk', [DailyCheckUpsController::class, 'submitSafetytalk'])->name('SafetytalkCheck');
+
+    Route::get('/dashboard/master-access-card', [AccessController::class, 'masterCard']);
+    Route::get('/dashboard/master-access-card/add', [AccessController::class, 'addMasterCard']);
+    Route::post('/dashboard/master-access-card/add', [AccessController::class, '_addMasterCard'])->name('addMasterCard');
+    Route::get('/dashboard/master-access/card/{id}', [AccessController::class, 'removeMasterCard']);
+    Route::get('/dashboarad/history/access', [AccessController::class, 'index']);
+    Route::get('/dashboarad/history/access/download', [AccessController::class, 'exportAccess']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });

@@ -15,14 +15,21 @@
                     <form id="add_employee" action="{{route('add-employee')}}" method="post">
                         @csrf
                         <div class="row">
-
-                            <div class="col-md-12 form-group">
-                                <label>Nomor Kartu</label>
-                                <input type="text" placeholder="Nomor Kartu"
-                                    class="form-control @error('uuid_card') is-invalid @enderror" autofocus
-                                    name="uuid_card" maxlength="12" value="{{old('uuid_card')}}" id="uuid_card">
-                                @error('uuid_card') <span class="text-danger">{{$message}}</span> @enderror
+                            <div class="col-12 col-md-6">
+                            <div class="form-group has-icon-right">
+                                <label for="uuid_card">Nomor Kartu </label>
+                                <div class="position-relative">
+                                    <input type="text" id="uuid_card" class="form-control @error('uuid_card') is-invalid @enderror" placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}" autocomplete="off" autofocus>
+                                    <button id="btnRemove" type="button" class="btn btn-sm btn-circle btn-danger form-control-icon" style="margin-right: 10px;">
+                                        X
+                                    </button>
+                                </div>
+                                @error('uuid_card')
+                                    <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
+                            </div>
+
                             <div class=" col-md-6 form-group">
                                 <label>Nomor Pegawai</label>
                                 <input type="text" placeholder="Nomor Pegawai"
@@ -49,10 +56,17 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Bagian/Fungsi</label>
-                                <input type="text" placeholder="Nama Pegawai"
+                                <input type="text" placeholder="Bagian/Fungsi"
                                     class="form-control @error('division') is-invalid @enderror" name="division"
                                     value="{{old('division')}}" id="division">
                                 @error('division') <span class="text-danger">{{$message}}</span> @enderror
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Perusahaan</label>
+                                <input type="text" placeholder="Nama Perusahaan"
+                                    class="form-control @error('company') is-invalid @enderror" name="company"
+                                    value="{{old('company')}}" id="company">
+                                @error('company') <span class="text-danger">{{$message}}</span> @enderror
                             </div>
                         </div>
 
@@ -87,7 +101,7 @@
         var timer = null;
         $('#uuid_card').on('keyup', function (e) {
             clearTimeout(timer);
-            timer = setTimeout(parseDec, 45);
+            timer = setTimeout(parseDec, 100);
         });
 
         function parseDec() {
@@ -103,12 +117,12 @@
             $('#uuid_card').val(uid_parse);
         }
 
-        $('#uuid_card').on('change', function (e) {
-            $.get('')
-        })
+        $('#btnRemove').on('click', function(e){
+            $('#uuid_card').val("");
+        });
 
 
-        $('#employee_number').mask('000000');
+        $('#employee_number').mask('000000000000');
     });
 
 </script>

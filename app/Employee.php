@@ -16,6 +16,10 @@ class Employee extends Model
         return $this->hasMany('App\DailyCheckUp');
     }
 
+    public function access_history(){
+        return $this->hasMany('App\Access_history');
+    }
+
     protected $guarded =
     [
 
