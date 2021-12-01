@@ -95,7 +95,7 @@
     <script>
 
         $(document).ready(function(){
-            
+
             setInterval(clockUpdate, 1000);
             var day = new Array(7);
             day[0] = "Minggu";
@@ -138,7 +138,7 @@
                 $("#jam").text(jam);
                 $("#tanggal").text(date);
             }
-            
+
             var uid_paragraph = $('#getUid');
             // console.log("{{Storage::url('container/getUID.php')}}")
             uid_paragraph.load("{{Storage::url('container/getUID.php')}}");
@@ -240,7 +240,7 @@
                 });
               }
             }
-            
+
             setTimeout(function(){
                 window.location.reload(1);
             }, 60000);
