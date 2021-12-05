@@ -15,7 +15,7 @@ class CreateAccesHistories extends Migration
     {
         Schema::create('access_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('uuid_card');
+            $table->string('uuid_card', 12);
             $table->integer('access_status');
             $table->unsignedBigInteger('employee_id');
             $table->timestamps();
