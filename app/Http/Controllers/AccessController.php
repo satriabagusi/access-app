@@ -71,14 +71,23 @@ class AccessController extends Controller
         );
 
         if(!$validator->fails()){
-            $insert = DB::table('access_users')->insert([
+            $access_master = DB::table('access_users')->insert([
                 'uuid_card' => $request->uuid_card,
                 'safetytalk_check' => 1,
                 'dcu_check' => 1,
                 'status' => 1
             ]);
 
-            if($insert){
+            $data = DB::table('employee')->insert([
+                'uuid_card' => $request->uuid_card,
+                'name' => 'Kartu Master',
+                'division' =>  'Kartu Master',
+                'company' => 'Kartu Master',
+                'employee_number' => '',
+                'department_id' => 1,
+            ]);
+
+            if($access_master && $data){
                 return redirect('/dashboard/master-access-card')->with('success', 'Berhasil Input data Kartu Master');
             }else{
                 return redirect('/dashboard/master-access-card')->with('error', 'Gagal Input data Kartu Master');
