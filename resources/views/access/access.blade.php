@@ -95,7 +95,7 @@
     <script>
 
         $(document).ready(function(){
-            
+
             setInterval(clockUpdate, 1000);
             var day = new Array(7);
             day[0] = "Minggu";
@@ -138,7 +138,7 @@
                 $("#jam").text(jam);
                 $("#tanggal").text(date);
             }
-            
+
             var uid_paragraph = $('#getUid');
             // console.log("{{Storage::url('container/getUID.php')}}")
             uid_paragraph.load("{{Storage::url('container/getUID.php')}}");
@@ -183,21 +183,86 @@
 
 
             function getData(str){
+                console.log(str);
+
               if(str !== ""){
-                $.ajax({
-                  type: 'GET',
-                  url: "{{URL::to('/data/dcu/employee')}}",
-                  data: {'uuid_card': str},
-                  dataType: 'json',
-                  success: function(data){
-                    if(data.status == 404 ){
-                        $('#text_access').text(data.message).removeClass('blink').addClass('blink-danger');
-                        $('#img_access').attr('src', "{{asset('img/tap-denied.png')}}");
-                        myVar1 = setInterval(myTimer1, 3000);
-                    }else if(data.status == 200){
-                        console.log(data);
-                        if(data.data.daily_check_ups.length !== 0){
-                            if(data.access.status == 0 ){
+                if(str == 00){
+                    myVar1 = setInterval(myTimer1, 1000);
+                }else{
+                    $.ajax({
+                    type: 'GET',
+                    url: "{{URL::to('/data/dcu/employee')}}",
+                    data: {'uuid_card': str},
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.status == 404 ){
+                            $('#text_access').text(data.message).removeClass('blink').addClass('blink-danger');
+                            $('#img_access').attr('src', "{{asset('img/tap-denied.png')}}");
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{URL::to('/modul/display/data')}}",
+                                data: { 'uid': '00'},
+                                success: function(data){
+                                    console.log('UID SET TO 00');
+                                },
+                                error: function(data){
+                                    console.log(data);
+                                }
+                            });
+                            myVar1 = setInterval(myTimer1, 3000);
+                        }else if(data.status == 200){
+                            console.log(data);
+                            if(data.data.daily_check_ups.length !== 0){
+                                if(data.access.status == 0 ){
+                                    $('#employee_number').text(data.data.employee_number);
+                                    $('#name').text(data.data.name);
+                                    $('#department').text(data.data.departments.department);
+                                    $('#img_access').attr('src', "{{asset('img/tap-denied.png')}}");
+                                    $('#text_access').text('Pegawai belum melakukan Daily Check Up dan/atau Safety Talk').removeClass('blink').removeClass('blink-success').addClass('blink-danger');
+                                    $('#fit_status').text("------").removeClass('text-primary text-bold text-warning');
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "{{URL::to('/modul/display/data')}}",
+                                        data: { 'uid': '00'},
+                                        success: function(data){
+                                            console.log('UID SET TO 00');
+                                        },
+                                        error: function(data){
+                                            console.log(data);
+                                        }
+                                    });
+
+                                    myVar1 = setInterval(myTimer1, 3000);
+
+                                }else if(data.access.status == 1 || data.access.status == 2){
+                                    $('#employee_number').text(data.data.employee_number);
+                                    $('#name').text(data.data.name);
+                                    $('#department').text(data.data.departments.department);
+                                    $('#img_access').attr('src', "{{asset('img/tap-success.png')}}");
+                                    $('#text_access').text('Akses Diterima').removeClass('blink').addClass('blink-success');
+                                    if(data.data.daily_check_ups[0].fit_status == 1){
+                                        $('#fit_status').text("Fit").addClass('text-primary text-bold');
+                                    }else if(data.data.daily_check_ups[0].fit_status == 0){
+                                        $('#fit_status').text("Unfit").addClass('text-warning text-bold');
+                                    }
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "{{URL::to('/modul/display/data')}}",
+                                        data: { 'uid': '00'},
+                                        success: function(data){
+                                            console.log('UID SET TO 00');
+                                        },
+                                        error: function(data){
+                                            console.log(data);
+                                        }
+                                    });
+
+                                    myVar1 = setInterval(myTimer1, 3000);
+
+                                }
+                            }else{
                                 $('#employee_number').text(data.data.employee_number);
                                 $('#name').text(data.data.name);
                                 $('#department').text(data.data.departments.department);
@@ -205,42 +270,35 @@
                                 $('#text_access').text('Pegawai belum melakukan Daily Check Up dan/atau Safety Talk').removeClass('blink').removeClass('blink-success').addClass('blink-danger');
                                 $('#fit_status').text("------").removeClass('text-primary text-bold text-warning');
 
-                                myVar1 = setInterval(myTimer1, 3000);
+                                $.ajax({
+                                        type: 'POST',
+                                        url: "{{URL::to('/modul/display/data')}}",
+                                        data: { 'uid': '00'},
+                                        success: function(data){
+                                            console.log('UID SET TO 00');
+                                        },
+                                        error: function(data){
+                                            console.log(data);
+                                        }
+                                    });
 
-                            }else if(data.access.status == 1 ){
-                                $('#employee_number').text(data.data.employee_number);
-                                $('#name').text(data.data.name);
-                                $('#department').text(data.data.departments.department);
-                                $('#img_access').attr('src', "{{asset('img/tap-success.png')}}");
-                                $('#text_access').text('Akses Diterima').removeClass('blink').addClass('blink-success');
-                                if(data.data.daily_check_ups[0].fit_status == 1){
-                                    $('#fit_status').text("Fit").addClass('text-primary text-bold');
-                                }else if(data.data.daily_check_ups[0].fit_status == 0){
-                                    $('#fit_status').text("Unfit").addClass('text-warning text-bold');
-                                }
                                 myVar1 = setInterval(myTimer1, 3000);
 
                             }
-                        }else{
-                            $('#employee_number').text(data.data.employee_number);
-                            $('#name').text(data.data.name);
-                            $('#department').text(data.data.departments.department);
-                            $('#img_access').attr('src', "{{asset('img/tap-denied.png')}}");
-                            $('#text_access').text('Pegawai belum melakukan Daily Check Up dan/atau Safety Talk').removeClass('blink').removeClass('blink-success').addClass('blink-danger');
-                            $('#fit_status').text("------").removeClass('text-primary text-bold text-warning');
-                            myVar1 = setInterval(myTimer1, 3000);
-
                         }
-                    }
 
-                  },
-                  error: function(response){
-                    console.log(response.responseJSON.message);
-                  }
-                });
-              }
+                    },
+                    error: function(response){
+                        console.log(response.responseJSON.message);
+                    }
+                    });
+                }
+
+                }else{
+                    myVar1 = setInterval(myTimer1, 1000);
+                }
             }
-            
+
             setTimeout(function(){
                 window.location.reload(1);
             }, 60000);

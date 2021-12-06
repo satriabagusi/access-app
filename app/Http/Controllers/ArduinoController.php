@@ -6,6 +6,7 @@ use App\Access_history;
 use App\Access_user;
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -110,6 +111,51 @@ class ArduinoController extends Controller
 //             }
 //         }
 //     }
+
+    public function safetyTalkCheck(Request $request){
+        if($request->uuid){
+            $uuid = $request->uuid;
+            $access = Access_user::where('uuid_card', $request->uuid)->first();
+            if(!$access){
+                DB::beginTransaction();
+                try{
+                    Access_user::create([
+                        'uuid_card' => $uuid,
+                        'safetytalk_check' => 1,
+                        'status' => 0
+                    ]);
+                    DB::commit();
+                    return "Berhasil melakukan SafetyTalk Check";
+                }catch (\Throwable $th){
+                    DB::rollBack();
+                    return "Gagal melakukan SafetyTalk Check. Ulangi kembali.";
+                }
+            }else if($access && $access->safetytalk_check == 0){
+                if($access->dcu_check == 1){
+                    $status = 1;
+                }else{
+                    $status = 0;
+                }
+
+                DB::beginTransaction();
+                try{
+                    Access_user::where('uuid_card', $uuid)
+                                ->update([
+                                    'safetytalk_check' => 1,
+                                    'status' => $status,
+                                ]);
+                    DB::commit();
+                    return "Berhasil melakukan Safetytalk Check";
+                }catch (\Throwable $th){
+                    DB::rollBack();
+                    return "Gagal melakukan Safetytalk Check. Ulangi kembali.";
+                }
+            }else if($access && $access->safetytalk_check == 1){
+                return "Sudah melakukan Safetytalk Check.";
+            }
+
+        }
+    }
 
 
 }

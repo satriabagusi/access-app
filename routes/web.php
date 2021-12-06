@@ -70,7 +70,7 @@ Route::get('/data/display/container', [ArduinoController::class, 'uidContainer']
 Route::get('/modul/data', [ArduinoController::class, 'getAccess']);
 Route::get('/modul/data/tap', [ArduinoController::class, 'storeAccessHistory']);
 Route::post('/modul/display/data', [ArduinoController::class, 'getUid']);
-Route::post('/modul/safetytalk', [DailyCheckUpsController::class, 'safetyTalkCheck']);
+Route::post('/modul/safetytalk', [ArduinoController::class, 'safetyTalkCheck']);
 
 //JQUERY CONTROLLER
 Route::get('/data/dcu/employee', [EmployeesController::class, 'checkEmployee']);

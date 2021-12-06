@@ -48,7 +48,7 @@ class EmployeesController extends Controller
         [
             'uuid_card' => 'required|max:12|alpha_num',
             'name' => 'required',
-            'employee_number' => 'required|numeric|digits_between:6,12',
+            'employee_number' => 'numeric|digits_between:0,12|nullable',
             'department_id' => 'required',
             'division' => 'required',
             'company' => 'required',
@@ -58,7 +58,6 @@ class EmployeesController extends Controller
             'uuid_card.max' => 'Format Nomor Kartu tidak sesuai.',
             'uuid_card.alpha_num' => 'Format nomor kartu tidak sesuai',
             'name.required' => 'Nama Pegawai Kosong',
-            'employee_number.required' => 'Nomor Pegawai kosong.',
             'employee_number.numeric' => 'Format Nomor Pegawai tidak sesuai',
             'employee_number.digits_between' => 'Format Nomor Pegawai tidak sesuai.',
             'department_id.required' => 'Departemen belum terpilih.',
@@ -79,7 +78,16 @@ class EmployeesController extends Controller
                 'department_id' => $request->department_id,
             ]);
 
-            if($insert){
+            if($request->department_id == 4){
+                $accessInsert = Access_user::create([
+                    'uuid_card' => $request->uuid_card,
+                    'safetytalk_check' => 1,
+                    'dcu_check' => 1,
+                    'status' => 1
+                ]);
+            }
+
+            if($insert or $accessInsert){
                 return redirect('/dashboard/employee')->with('success', 'Berhasil Input data Pegawai');
             }else{
                 return redirect('/dashboard/employee')->with('error', 'Gagal Input data Pegawai');

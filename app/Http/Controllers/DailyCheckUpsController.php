@@ -133,7 +133,7 @@ class DailyCheckUpsController extends Controller
                             'fit_status' => $request->fit_status,
                         ]);
 
-                        if($employee->department_id == 1){
+                        if($employee->department_id !== 3){
                             Access_user::create([
                                 'uuid_card' => $request->uuid_card,
                                 'dcu_check' => 1,
@@ -279,53 +279,4 @@ class DailyCheckUpsController extends Controller
         }
     }
 
-    public function safetyTalkCheck(Request $request){
-        if($request->uuid){
-            $checkAccess = Access_user::where('uuid_card', $request->uuid)->first();
-
-            if($checkAccess->safetytalk_check == 0 || $checkAccess->status == 0){
-
-                if($checkAccess->safetytalk_check == 1 && $checkAccess->dcu_check == 1){
-                    $status = 1;
-                }else{
-                    $status = 0;
-                }
-
-                DB::beginTransaction();
-                try {
-                    Access_user::create([
-                        'uuid_card' => $request->uuid,
-                        'safetytalk_check' => 1,
-                        'status' => $status,
-                    ]);
-                    DB::commit();
-                } catch (\Throwable $th) {
-                    DB::rollBack();
-                    return "Errorrrrawrrr: Ulangi Kembali";
-                }
-
-            }else{
-
-                if($checkAccess->safetytalk_check == 1 && $checkAccess->dcu_check == 1){
-                    $status = 1;
-                }else{
-                    $status = 0;
-                }
-                DB::transaction();
-                try {
-                    Access_user::where('uuid_card', $request->uid)
-                                ->update([
-                                    'safetytalk_check' => 1,
-                                    'status' => $status,
-                                ]);
-                    DB::commit();
-                } catch (\Throwable $th) {
-                    DB::rollBack();
-                    return "Errorrrrawrrr: Ulangi Kembali";
-                }
-            }
-        }else{
-            abort(404);
-        }
-    }
 }
