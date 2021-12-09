@@ -139,7 +139,7 @@ void setup() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.setCursor(0, 20);
+  display.setCursor(5, 20);
   display.setTextWrap(false);
   display.print("Connecting ");
 
@@ -160,7 +160,7 @@ void setup() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.setCursor(0, 20);
+  display.setCursor(5, 23);
   display.setTextWrap(false);
   display.print("Connected!");
   display.display();
@@ -195,8 +195,10 @@ void loop() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.setCursor(15, 18);
-  display.print("Silahkan Tap Kartu!");
+  display.setCursor(13, 18);
+  display.print("Silahkan");
+  display.setCursor(43, 5);
+  display.print("Tap Kartu!");
   display.display();
   hasilstatus = 0;
 
