@@ -195,10 +195,10 @@ void loop() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.setCursor(13, 18);
+  display.setCursor(15, 18);
   display.print("Silahkan");
-  display.setCursor(43, 5);
-  display.print("Tap Kartu!");
+  display.setCursor(10, 48);
+   display.print("Tap Kartu!");
   display.display();
   hasilstatus = 0;
 
