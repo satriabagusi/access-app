@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Arduino",
-            "compilerPath": "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\bin\\xtensa-lx106-elf-g++",
+            "compilerPath": "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\bin\\xtensa-lx106-elf-g++",
             "compilerArgs": [
                 "-U__STRICT_ANSI__",
                 "-w",
@@ -18,28 +18,28 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\tools\\sdk\\include",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\tools\\sdk\\lwip2\\include",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\cores\\esp8266",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\variants\\nodemcu",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\ESP8266HTTPClient\\src",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\ESP8266WiFi\\src",
-                "C:\\Users\\Satria\\Documents\\Arduino\\libraries\\ArduinoJson\\src",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\SPI",
-                "C:\\Users\\Satria\\Documents\\Arduino\\libraries\\MFRC522\\src",
-                "C:\\Users\\Satria\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library",
-                "C:\\Users\\Satria\\Documents\\Arduino\\libraries\\Adafruit_SSD1306",
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\Wire",
-                "C:\\Users\\Satria\\Documents\\Arduino\\libraries\\Adafruit_BusIO",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0\\xtensa-lx106-elf",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0\\backward",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\lib\\gcc\\xtensa-lx106-elf\\10.3.0\\include",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\lib\\gcc\\xtensa-lx106-elf\\10.3.0\\include-fixed",
-                "c:\\users\\satria\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include"
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\tools\\sdk\\include",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\tools\\sdk\\lwip2\\include",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\cores\\esp8266",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\variants\\nodemcu",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\ESP8266HTTPClient\\src",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\ESP8266WiFi\\src",
+                "C:\\Users\\HP\\Documents\\Arduino\\libraries\\ArduinoJson\\src",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\SPI",
+                "C:\\Users\\HP\\Documents\\Arduino\\libraries\\MFRC522\\src",
+                "C:\\Users\\HP\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library",
+                "C:\\Users\\HP\\Documents\\Arduino\\libraries\\Adafruit_SSD1306",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\Wire",
+                "C:\\Users\\HP\\Documents\\Arduino\\libraries\\Adafruit_BusIO",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0\\xtensa-lx106-elf",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include\\c++\\10.3.0\\backward",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\lib\\gcc\\xtensa-lx106-elf\\10.3.0\\include",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\lib\\gcc\\xtensa-lx106-elf\\10.3.0\\include-fixed",
+                "c:\\users\\hp\\appdata\\local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\3.0.4-gcc10.3-1757bed\\xtensa-lx106-elf\\include"
             ],
             "forcedInclude": [
-                "C:\\Users\\Satria\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\cores\\esp8266\\Arduino.h"
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\cores\\esp8266\\Arduino.h"
             ],
             "cStandard": "c11",
             "cppStandard": "c++17",

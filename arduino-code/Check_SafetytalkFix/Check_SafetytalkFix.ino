@@ -95,8 +95,9 @@ const unsigned char logopertamina [] PROGMEM = {
 };
 
 //----------------------------------------SSID and Password of your WiFi router-------------------------------------------------------------------------------------------------------------//
-const char* ssid = "Rahasia";
-const char* password = "maungapain";
+const char* ssid = "AP-SAFETYTALK";
+const char* password = "ftujungberung";
+int loading;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 int readsuccess;
@@ -110,8 +111,8 @@ int stoploop = false;
 String hasilnama, hasiluuid, hasilcompany, hasildepartment;
 int hasilstatus;
 
-String serverName = "http://192.168.100.35/access-app/data/dcu/employee";
-String serverNamepost = "http://192.168.100.35/access-app/modul/safetytalk";
+String serverName = "http://192.168.1.3/data/dcu/employee";
+String serverNamepost = "http://192.168.1.3/modul/safetytalk";
 
 
 //-----------------------------------------------------------------------------------------------SETUP--------------------------------------------------------------------------------------//
@@ -124,7 +125,7 @@ void setup() {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C); //-->OLED Address 0x3C
   delay(500);
 
-  WiFi.begin(ssid, password); //--> Connect to your WiFi router
+  //WiFi.begin(ssid, password); //--> Connect to your WiFi router
   Serial.println("");
 
   pinMode(ON_Board_LED, OUTPUT);
@@ -133,8 +134,7 @@ void setup() {
   display.clearDisplay();
   display.drawBitmap(0, 0, logopertamina, 128, 64, 1);
   display.display();
-  delay(3000);
-
+  delay(2500);
   //----------------------------------------Wait for connection
   display.clearDisplay();
   display.setTextSize(2);
@@ -142,18 +142,11 @@ void setup() {
   display.setCursor(5, 20);
   display.setTextWrap(false);
   display.print("Connecting ");
-
   Serial.print("Connecting");
   display.display();
   display.startscrollleft(0x20, 0x07);
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print(".");
-    //----------------------------------------Make the On Board Flashing LED on the process of connecting to the wifi router.
-    digitalWrite(ON_Board_LED, LOW);
-    delay(250);
-    digitalWrite(ON_Board_LED, HIGH);
-    delay(250);
-  }
+  connectssid1();
+
   digitalWrite(ON_Board_LED, HIGH); //--> Turn off the On Board LED when it is connected to the wifi router.
   //----------------------------------------If successfully connected to the wifi router, the IP Address that will be visited is displayed in the serial monitor
   display.stopscroll();
@@ -177,10 +170,12 @@ void setup() {
   display.print("IP Address : ");
   display.setCursor(10, 30);
   display.print(WiFi.localIP());
+  display.setCursor(10,40);
+  display.print("WiFi Signal: "+ String(WiFi.RSSI()) +"dBm");
   display.display();
   Serial.print("Konek!");
 
-  delay(5000);
+  delay(2500);
 
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -248,7 +243,7 @@ void loop() {
       display.setCursor(0, 20);
       display.print("Bagian: " + hasildepartment);
       display.display();
-      delay(3000);
+      delay(1500);
       Serial.print("Nama: " + hasilnama);
       Serial.println(hasilnama);
       Serial.println("Perusahaan: " + hasilcompany);
@@ -273,7 +268,7 @@ void loop() {
       display.setCursor(0, 0);
       display.print(payload2);
       display.display();
-      delay(3000);
+      delay(1500);
 
     }
     else {
@@ -399,6 +394,64 @@ void decodestring() {
   hasilcompany = root["data"]["company"].as<String>();
   hasiluuid = root["data"]["uuid_card"].as<String>();
   hasildepartment = root["data"]["departments"]["department"].as<String>();
+}
 
+void connectssid1(){
+  Serial.println("Connecting to AP-SAFETYTALK");
+  ssid = "AP-SAFETYTALK";
+  WiFi.begin(ssid,password);
+  loading = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    //----------------------------------------Make the On Board Flashing LED on the process of connecting to the wifi router.
+    digitalWrite(ON_Board_LED, LOW);
+    delay(250);
+    digitalWrite(ON_Board_LED, HIGH);
+    delay(250);
+    loading++;
+    Serial.println(String(loading));
+    if(loading > 60){
+      connectssid2();
+    }
+  }
+}
 
+void connectssid2(){
+  Serial.println("Connecting to AP-AREATERBATAS");
+  ssid = "AP-AREATERBATAS";
+  WiFi.begin(ssid,password);
+  loading = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    //----------------------------------------Make the On Board Flashing LED on the process of connecting to the wifi router.
+    digitalWrite(ON_Board_LED, LOW);
+    delay(250);
+    digitalWrite(ON_Board_LED, HIGH);
+    delay(250);
+    loading++;
+    Serial.println(String(loading));
+    if(loading > 60){
+      connectssid3();
+    }
+  }
+}
+
+void connectssid3(){
+  Serial.println("Connecting to SERVER_DCU");
+  ssid = "SERVER_DCU";
+  WiFi.begin(ssid,password);
+  loading = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    //----------------------------------------Make the On Board Flashing LED on the process of connecting to the wifi router.
+    digitalWrite(ON_Board_LED, LOW);
+    delay(250);
+    digitalWrite(ON_Board_LED, HIGH);
+    delay(250);
+    loading++;
+    Serial.println(String(loading));
+    if(loading > 60){
+      connectssid1();
+    }
+  }
 }
