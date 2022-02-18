@@ -138,6 +138,15 @@
                             </ul>
                         </li>
 
+                        @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
+                            <li class="sidebar-item @yield('monitoring')">
+                                <a href="{{URL::to('/dashboard/monitor/segel')}}" class='sidebar-link'>
+                                    <i data-feather="aperture" width="20"></i>
+                                    <span>Monitoring Segel</span>
+                                </a>
+                            </li>
+                        @endif
+
                         </li>
 
                     </ul>

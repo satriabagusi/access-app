@@ -108,5 +108,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboarad/history/access', [AccessController::class, 'index']);
     Route::get('/dashboarad/history/access/download', [AccessController::class, 'exportAccess']);
 
+    Route::get('/dashboard/monitor/segel', [PagesController::class, 'monitorSegel']);
+
     Route::get('/logout', [AuthController::class, 'logout']);
 });
