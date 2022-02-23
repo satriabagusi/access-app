@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Access_user;
+use App\Http\Controllers\VendorPermitController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 
@@ -107,6 +108,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/master-access/card/{id}', [AccessController::class, 'removeMasterCard']);
     Route::get('/dashboarad/history/access', [AccessController::class, 'index']);
     Route::get('/dashboarad/history/access/download', [AccessController::class, 'exportAccess']);
+
+    Route::get('/dashboard/vendor/permit', [VendorPermitController::class, 'index']);
+    Route::get('/dashboard/vendor/detail/{id}', [VendorPermitController::class, 'show']);
 
     Route::get('/dashboard/monitor/segel', [PagesController::class, 'monitorSegel']);
 

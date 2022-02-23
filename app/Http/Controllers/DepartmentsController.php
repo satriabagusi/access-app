@@ -17,7 +17,7 @@ class DepartmentsController extends Controller
     public function index()
     {
         $departments = Department::paginate(10);
-        return view('admin.department', compact('departments'));
+        return view('admin.employee.department', compact('departments'));
     }
 
     /**
@@ -28,7 +28,7 @@ class DepartmentsController extends Controller
     public function create()
     {
 
-        return view('admin.add-department');
+        return view('admin.employee.add-department');
     }
 
     /**
@@ -85,7 +85,7 @@ class DepartmentsController extends Controller
     public function edit($id)
     {
         $department = Department::where('id', $id)->first();
-        return view('admin.edit-department', compact('department'));
+        return view('admin.employee.edit-department', compact('department'));
     }
 
     /**

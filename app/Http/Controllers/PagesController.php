@@ -11,6 +11,6 @@ class PagesController extends Controller
     }
 
     public function monitorSegel(){
-        return view('admin.monitor-segel');
+        return view('admin.seal-monitoring.monitor-segel');
     }
 }

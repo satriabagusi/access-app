@@ -23,6 +23,9 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <button class="float-end btn btn-primary">Capture</button>
+            </div>
         </div>
     </div>
 </div>

@@ -43,7 +43,7 @@ class AuthController extends Controller
     }
 
     public function addUser(){
-        return view('admin.add-user');
+        return view('admin.employee.add-user');
     }
 
     public function _addUser(Request $request){

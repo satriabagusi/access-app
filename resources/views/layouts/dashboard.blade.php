@@ -35,7 +35,7 @@
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <img src="{{asset('img/Pertamina_Logo.svg')}}" >
-                    <p class="small text-center mt-2" style="font-size: 14px;">Pertamina Fuel Terminal Ujung Berung</p>
+                    <p class="small text-center mt-2" style="font-size: 14px;">Pertamina Fuel Terminal Cikampek</p>
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
@@ -139,9 +139,18 @@
                         </li>
 
                         @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
+                            <li class="sidebar-item @yield('permit')">
+                                <a href="{{URL::to('dashboard/vendor/permit')}}" class='sidebar-link'>
+                                    <i data-feather="file-text" width="20"></i>
+                                    <span>Vendor Permit</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
                             <li class="sidebar-item @yield('monitoring')">
                                 <a href="{{URL::to('/dashboard/monitor/segel')}}" class='sidebar-link'>
-                                    <i data-feather="aperture" width="20"></i>
+                                    <i data-feather="camera" width="20"></i>
                                     <span>Monitoring Segel</span>
                                 </a>
                             </li>

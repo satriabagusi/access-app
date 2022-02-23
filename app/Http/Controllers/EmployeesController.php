@@ -21,7 +21,7 @@ class EmployeesController extends Controller
     {
         // $employees = Employee::paginate(10);
         $employees = Employee::with(['departments'])->paginate(5);
-        return view('admin.employee-data', compact('employees'));
+        return view('admin.employee.employee-data', compact('employees'));
     }
 
     /**
@@ -32,7 +32,7 @@ class EmployeesController extends Controller
     public function create()
     {
         $department = Department::all();
-        return view('admin.add-employee', compact('department'));
+        return view('admin.employee.add-employee', compact('department'));
     }
 
     /**

@@ -24,7 +24,7 @@ class DailyCheckUpsController extends Controller
     public function index()
     {
         $dcu = DailyCheckUp::with(['employees.departments'])->paginate(10);
-        return view('admin.dailychekup-history', compact('dcu'));
+        return view('admin.history.dailychekup-history', compact('dcu'));
     }
 
     public function exportDCU(Request $request){
@@ -45,7 +45,7 @@ class DailyCheckUpsController extends Controller
      */
     public function create()
     {
-        return view('admin.dailycheckup');
+        return view('admin.dcu.dailycheckup');
     }
 
     /**
@@ -228,7 +228,7 @@ class DailyCheckUpsController extends Controller
     }
 
     public function safetyTalk(){
-        return view('admin.safetytalk');
+        return view('admin.safetytalk.safetytalk');
     }
 
     public function submitSafetytalk(Request $request){

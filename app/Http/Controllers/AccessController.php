@@ -20,7 +20,7 @@ class AccessController extends Controller
     public function index(){
         $access_history = Access_history::with(['employees.departments'])->paginate(10);
         // return $access_history;
-        return view('admin.access-history', compact('access_history'));
+        return view('admin.history.access-history', compact('access_history'));
     }
 
     public function display(){
@@ -51,11 +51,11 @@ class AccessController extends Controller
 
     public function masterCard(){
         $masterAccess = Access_user::where('created_at', null)->get();
-        return view('admin.access-master', compact('masterAccess'));
+        return view('admin.access.access-master', compact('masterAccess'));
     }
 
     public function addMasterCard(){
-        return view('admin.add-access-master');
+        return view('admin.access.access-master');
     }
 
     public function _addMasterCard(Request $request){
