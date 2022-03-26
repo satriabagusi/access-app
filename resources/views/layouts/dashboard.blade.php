@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="{{asset('vendors/sweetalert2/css/sweetalert2.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/datetimepicker/css/tempus-dominus.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/datetimepicker/css/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/bs-stepper/css/bs-stepper.css')}}" />
+    <link rel="stylesheet" href="{{asset('vendors/dropzone/css/dropzone.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('vendors/filepond/css/filepond.css')}}">
+
 
     <style>
         body {
@@ -64,12 +68,6 @@
                                 </a>
                             </li>
                         @endif
-                        {{-- <li class="sidebar-item @yield('employee-data')">
-                            <a href="{{URL::to('/dashboard/employee')}}" class='sidebar-link'>
-                                <i data-feather="users" width="20"></i>
-                                <span>Data Pegawai</span>
-                            </a>
-                        </li> --}}
                         @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 2)
                             <li class="sidebar-item @yield('employee-data') has-sub">
                                 <a href="#" class='sidebar-link'>
@@ -117,6 +115,7 @@
                         </li>
                         @endif
 
+                        @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
                         <li class="sidebar-item @yield('history') has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="clock" width="20"></i>
@@ -128,26 +127,25 @@
                                         Daily Check Up
                                     </a>
                                 </li>
-                                @if (Auth::user()->user_role_id == 1)
                                 <li>
                                     <a class="@yield('access-history')" href="{{URL::to('/dashboarad/history/access')}}">
                                         Akses Area Terbatas
                                     </a>
                                 </li>
-                                @endif
                             </ul>
                         </li>
+                        @endif
 
-                        @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
+                        @if (Auth::user()->user_role_id == 1)
                             <li class="sidebar-item @yield('permit')">
-                                <a href="{{URL::to('dashboard/vendor/permit')}}" class='sidebar-link'>
+                                <a href="{{URL::to('dashboard/vendor/')}}" class='sidebar-link'>
                                     <i data-feather="file-text" width="20"></i>
                                     <span>Vendor Permit</span>
                                 </a>
                             </li>
                         @endif
 
-                        @if (Auth::user()->user_role_id == 1 || Auth::user()->user_role_id == 3)
+                        @if (Auth::user()->user_role_id == 1)
                             <li class="sidebar-item @yield('monitoring')">
                                 <a href="{{URL::to('/dashboard/monitor/segel')}}" class='sidebar-link'>
                                     <i data-feather="camera" width="20"></i>
@@ -157,6 +155,36 @@
                         @endif
 
                         </li>
+
+                        @if (Auth::user()->user_role_id == 4)
+
+                        <li class="sidebar-item @yield('vendor-project') has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="smartphone" width="20"></i>
+                                <span>Pekerjaan</span>
+                            </a>
+                            <ul class="submenu @yield('vendor-project')">
+                                <li>
+                                    <a class="@yield('project-list')" href="{{URL::to('/vendor/project-list')}}">
+                                        Data Pekerjaan
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="@yield('add-project')" href="{{URL::to('/vendor/add-project')}}">
+                                        Tambah Data Pekerjaan
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="sidebar-item @yield('vendor-detail') ">
+                            <a href="{{URL::to('/vendor/profile')}}" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Profil Vendor</span>
+                            </a>
+                        </li>
+                        @endif
 
                     </ul>
                 </div>
@@ -183,7 +211,7 @@
                                 <div class="avatar me-2 bg-info">
                                     <i data-feather="user" class="text-white" ></i>
                                 </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, {{Auth::user()->username}}</div>
+                                {{-- <div class="d-none d-md-block d-lg-inline-block">Hi, {{Auth::user()->username}}</div> --}}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item"> Welcome, {{Auth::user()->username}}</a>
@@ -208,7 +236,7 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2020 &copy; DCU Apps</p>
+                        <p>{{date('Y')}} &copy; DCU Apps</p>
                     </div>
                     <div class="float-end">
                         <p>Made by <a
@@ -237,6 +265,13 @@
     <script src="{{asset('vendors/datetimepicker/js/tempus-dominus.js')}}"></script>
     <script src="{{asset('vendors/datetimepicker/js/daterangepicker.js')}}"></script>
 
+    <script src="{{asset('vendors/bs-stepper/js/bs-stepper.js')}}"></script>
+    <script src="{{asset('vendors/dropzone/js/dropzone.min.js')}}"></script>
+    <script src="{{asset('vendors/filepond/js/filepond.js')}}"></script>
+    <script src="{{asset('vendors/filepond/js/filepond-plugin-image-preview.js')}}"></script>
+    <script src="{{asset('vendors/filepond/js/filepond.jquery.js')}}"></script>
+    <script src="{{asset('vendors/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendors/datatables/dataTables.bootstrap.min.js')}}"></script>
 
     @stack('scripts')
 

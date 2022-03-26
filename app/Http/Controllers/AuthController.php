@@ -24,7 +24,12 @@ class AuthController extends Controller
             ];
 
             if (Auth::attempt($credentials)) {
-                return redirect(URL::to('/dashboard'));
+                if(Auth::user()->user_role_id <= 3){
+                    return redirect(URL::to('/dashboard'));
+                }else{
+                    Auth::logout();
+                    return redirect(URL::to('/'))->with('error', 'Silahkan login menggunakan akun Admin');
+                }
             }else{
                 return redirect(URL::to('/login'))->with('error', 'Username/Password salah');
             }

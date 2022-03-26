@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Access_user;
-use App\Http\Controllers\VendorPermitController;
+use App\Http\Controllers\VendorPermitsController;
+use App\Http\Controllers\VendorProjectsController;
+use App\Http\Controllers\VendorsController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +34,7 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Route::get('/', function(){
-    return redirect(URL::to('/dashboard'));
-});
+
 
 Route::get('/storagelink', function(){
     return Artisan::call('storage:link');
@@ -43,7 +44,7 @@ Route::get('/deleteAccess', function(Request $request) {
     if($request){
         if($request->_token == "bqbunilybun"){
             // return "ok";
-            $delete = Access_user::where('created_at', '>=',Carbon::now()->subHours(8))->delete();
+            $delete = Access_user::where('created_at', '<=',Carbon::now()->subHours(8))->delete();
             return $delete;
         }else{
             return "not ok";
@@ -51,13 +52,6 @@ Route::get('/deleteAccess', function(Request $request) {
     }else{
         return URL::to('/');
     }
-});
-
-Route::middleware(['guest'])->group(function(){
-
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, '__login'])->name('login-post');
-
 });
 
 // DISPLAY CONTROLLER
@@ -75,6 +69,24 @@ Route::post('/modul/safetytalk', [ArduinoController::class, 'safetyTalkCheck']);
 
 //JQUERY CONTROLLER
 Route::get('/data/dcu/employee', [EmployeesController::class, 'checkEmployee']);
+
+
+Route::middleware(['guest'])->group(function(){
+
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, '__login'])->name('login-post');
+
+    //move to auth middleware after finished the slicing
+    Route::get('/vendor/login', [VendorsController::class, 'login']);
+    Route::post('/vendor/login', [VendorsController::class, '__login'])->name('login-vendor');
+    // Route::get('/vendor/login', [VendorsController::class, 'login']);
+    Route::get('/vendor/register', [VendorsController::class, 'register']);
+    Route::post('/vendor/register', [VendorsController::class, '__register'])->name('register-vendor');
+
+    Route::get('/', function(){
+        return view('auth.portal');
+    });
+});
 
 
 Route::middleware(['auth'])->group(function () {
@@ -109,10 +121,31 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboarad/history/access', [AccessController::class, 'index']);
     Route::get('/dashboarad/history/access/download', [AccessController::class, 'exportAccess']);
 
-    Route::get('/dashboard/vendor/permit', [VendorPermitController::class, 'index']);
-    Route::get('/dashboard/vendor/detail/{id}', [VendorPermitController::class, 'show']);
+    Route::get('/dashboard/vendor/', [VendorsController::class, 'index']);
+    Route::get('/dashboard/vendor/detail/{id}', [VendorsController::class, 'show']);
+    Route::get('/dashboard/vendor/project/permit/detail/{id}', [VendorPermitsController::class, 'projectPermit']);
 
     Route::get('/dashboard/monitor/segel', [PagesController::class, 'monitorSegel']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
+
+
+    // VENDOR
+
+
+    Route::get('/vendor/home', [PagesController::class, 'vendorDashboard']);
+
+    Route::get('/vendor/project/detail/{id}', [VendorProjectsController::class, 'show']);
+    Route::get('/vendor/profile', [VendorsController::class, 'edit']);
+    Route::post('/vendor/profile', [VendorsController::class, 'update'])->name('update_vendor');
+
+    Route::get('/vendor/project-list', [VendorProjectsController::class, 'index']);
+    Route::get('/vendor/add-project', [VendorProjectsController::class, 'create']);
+    Route::post('/vendor/add-project', [VendorProjectsController::class, 'store'])->name('add_project');
+    Route::get('/vendor/project/detail/{id}', [VendorProjectsController::class, 'show']);
+    Route::post('/vendor/project/detail/update', [VendorProjectsController::class, 'update'])->name('update_contract');
+
+    Route::get('/vendor/project/permit/{id}', [VendorPermitsController::class, 'show']);
+    Route::post('/vendor/project/permit/upload', [VendorPermitsController::class, 'store'])->name('upload_permit');
+
 });

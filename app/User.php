@@ -28,4 +28,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function vendors(){
+        return $this->hasOne('App\Vendor');
+    }
+
 }

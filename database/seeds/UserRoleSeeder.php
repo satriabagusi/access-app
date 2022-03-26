@@ -23,5 +23,13 @@ class UserRoleSeeder extends Seeder
         DB::table('user_roles')->insert([
             'user_role' => 'safetytalk',
         ]);
+
+        DB::table('user_roles')->insert([
+            'user_role' => 'vendor',
+        ]);
+
+        DB::table('user_roles')->insert([
+            'user_role' => 'security',
+        ]);
     }
 }

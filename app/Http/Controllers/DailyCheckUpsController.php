@@ -45,6 +45,7 @@ class DailyCheckUpsController extends Controller
      */
     public function create()
     {
+        Access_user::where('created_at', '<=', Carbon::now()->subDay()->subHours(8) )->delete();
         return view('admin.dcu.dailycheckup');
     }
 
@@ -56,6 +57,7 @@ class DailyCheckUpsController extends Controller
      */
     public function store(Request $request)
     {
+        Access_user::where('created_at', '<=', Carbon::now()->subDay()->subHours(8) )->delete();
         $data = $request->uuid_card;
         // return substr(dechex($data), 3, 5);
         // return $request->all();
