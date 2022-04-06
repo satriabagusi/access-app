@@ -52,3 +52,11 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#contract_number').mask('AAA/000/0000');
+        })
+    </script>
+@endpush

@@ -147,5 +147,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/vendor/project/permit/{id}', [VendorPermitsController::class, 'show']);
     Route::post('/vendor/project/permit/upload', [VendorPermitsController::class, 'store'])->name('upload_permit');
-
+    Route::get('/vendor/project/permit/delete/{id}', [VendorPermitsController::class, 'destroy']);
 });

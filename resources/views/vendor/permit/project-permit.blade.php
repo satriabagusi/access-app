@@ -1,66 +1,38 @@
 @extends('layouts.dashboard')
-@section('page-title', 'Vendor Dashboard')
+@section('page-title', 'Vendor Dashboard - Upload Permit ')
 @section('vendor-project', 'active')
 @section('project-list', 'text-primary')
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-auto">
+    <div class="col-12">
         <div class="card shadow">
             <div class="card-body">
-                    <h2>Linear stepper</h2>
-          <div id="stepper1" class="bs-stepper">
-            <div class="bs-stepper-header">
-              <div class="step" data-target="#test-l-1">
-                <button type="button" class="btn step-trigger">
-                  <span class="bs-stepper-circle">1</span>
-                  <span class="bs-stepper-label">Form JSA</span>
-                </button>
-              </div>
-              <div class="line"></div>
-              <div class="step" data-target="#test-l-2">
-                <button type="button" class="btn step-trigger">
-                  <span class="bs-stepper-circle">2</span>
-                  <span class="bs-stepper-label">Form CSMS</span>
-                </button>
-              </div>
-              <div class="line"></div>
-              <div class="step" data-target="#test-l-3">
-                <button type="button" class="btn step-trigger">
-                  <span class="bs-stepper-circle">3</span>
-                  <span class="bs-stepper-label">Form HSE Plan</span>
-                </button>
-              </div>
-              <div class="step" data-target="#test-l-4">
-                <button type="button" class="btn step-trigger">
-                  <span class="bs-stepper-circle">4</span>
-                  <span class="bs-stepper-label">Form Permit</span>
-                </button>
-              </div>
-            </div>
-            <div class="bs-stepper-content">
-              <div id="test-l-1" class="content">
-                <p class="text-start">File JSA</p>
-                @foreach ($permit->unique('permit_type_id') as $item)
-                {{$item}}
-                        <p>
-                            <a target="_blank" href="{{\Storage::url($item->file_name)}}">{{substr($item->file_name, 19)}}</a>
-                        </p>
-                @endforeach
-                <hr>
-                <p class="text-center">Upload JSA</p>
+                    <h2 class="mb-4">Upload File Permit {{$project->project_name}}</h2>
+
 
                 <form id="upload" class="" action="{{route('upload_permit')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <label for="formFile" class="form-label">Upload File</label>
-                        <div class="col-8">
-                            <input class="form-control @error('permit_file') is-invalid @enderror" type="file" id="formFile" accept="application/pdf" name="permit_file">
-                            <input type="hidden" name="permit_type_id" value="2">
-                            <input type="hidden" name="project_id" value="{{$id}}">
+
+                        <fieldset class="form-group">
+                            <label for="">Jenis Permit</label>
+                            <select name="permit_type_id" class="form-select" id="basicSelect">
+                                <option value="1">CSMS</option>
+                                <option value="2">JSA</option>
+                                <option value="3">HSE PLAN</option>
+                                <option value="4">Form Permit</option>
+                            </select>
+                        </fieldset>
+                        <div class="form-group">
+                            <label for="formFile" class="form-label">Upload File</label>
+                            <div class="col-8">
+                                <input class="form-control @error('permit_file') is-invalid @enderror" type="file" id="formFile" accept="application/pdf" name="permit_file">
+                                <input type="hidden" name="project_id" value="{{$id}}">
+                            </div>
                         </div>
                         <div class="col">
-                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success">Upload</button>
+                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success float-end">Upload</button>
                         </div>
 
                         @error('permit_file')
@@ -71,84 +43,89 @@
                         @enderror
                     </div>
                 </form>
-
-                <div class="row">
-                    <div class="col-5 mt-5">
-                        <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                    </div>
-                </div>
-              </div>
-              <div id="test-l-2" class="content">
-                <p class="text-center">test 2</p>
-                <form id="upload" class="" action="{{route('upload_permit')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <hr>
+                <div class="col-md-auto">
+                    <h5 class="card-title">File Permit</h5>
                     <div class="row">
-                        <label for="formFile" class="form-label">Upload File</label>
-                        <div class="col-8">
-                            <input class="form-control" type="file" id="formFile" accept="application/pdf">
-                            <input type="hidden" name="permit_type_id" value="2">
+                        <div class="col-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-csms-tab" data-bs-toggle="pill" href="#v-pills-csms" role="tab"
+                                    aria-controls="v-pills-csms" aria-selected="true">CSMS</a>
+                                <a class="nav-link" id="v-pills-jsa-tab" data-bs-toggle="pill" href="#v-pills-jsa" role="tab"
+                                    aria-controls="v-pills-jsa" aria-selected="false">JSA</a>
+                                <a class="nav-link" id="v-pills-hsePlan-tab" data-bs-toggle="pill" href="#v-pills-hsePlan" role="tab"
+                                    aria-controls="v-pills-hsePlan" aria-selected="false">HSE PLAN</a>
+                                <a class="nav-link" id="v-pills-formPermit-tab" data-bs-toggle="pill" href="#v-pills-formPermit" role="tab"
+                                    aria-controls="v-pills-formPermit" aria-selected="false">Form Permit</a>
+                            </div>
                         </div>
-                        <div class="col">
-                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success">Upload</button>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-csms" role="tabpanel" aria-labelledby="v-pills-csms-tab">
+                                    @if ($csms)
+                                    <ul class="list-group">
+                                    @foreach ($csms as $item)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span> <a target="_blank" href="{{\Storage::url($item->file_name)}}">{{substr($item->file_name, 19)}}</a></span>
+                                            <span class="badge bg-danger badge-pill badge-round ml-1">
+                                                <a href="{{URL::to('/vendor/project/permit/delete/'.\Crypt::encrypt($item->id))}}" class="text-decoration-none text-white">X</a>
+                                            </span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    @endif
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-jsa" role="tabpanel" aria-labelledby="v-pills-jsa-tab">
+                                    @if ($jsa)
+                                    <ul class="list-group">
+                                    @foreach ($jsa as $item)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span> <a target="_blank" href="{{\Storage::url($item->file_name)}}">{{substr($item->file_name, 19)}}</a></span>
+                                            <span class="badge bg-danger badge-pill badge-round ml-1">
+                                                <a href="{{URL::to('/vendor/project/permit/delete/'.\Crypt::encrypt($item->id))}}" class="text-decoration-none text-white">X</a>
+                                            </span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    @endif
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-hsePlan" role="tabpanel" aria-labelledby="v-pills-hsePlan-tab">
+                                    @if ($hse_plan)
+                                    <ul class="list-group">
+                                    @foreach ($hse_plan as $item)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span> <a target="_blank" href="{{\Storage::url($item->file_name)}}">{{substr($item->file_name, 19)}}</a></span>
+                                            <span class="badge bg-danger badge-pill badge-round ml-1">
+                                                <a href="{{URL::to('/vendor/project/permit/delete/'.\Crypt::encrypt($item->id))}}" class="text-decoration-none text-white">X</a>
+                                            </span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    @endif
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-formPermit" role="tabpanel" aria-labelledby="v-pills-formPermit-tab">
+                                    @if ($form_permit)
+                                    @foreach ($form_permit as $item)
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span> <a target="_blank" href="{{\Storage::url($item->file_name)}}">{{substr($item->file_name, 19)}}</a></span>
+                                            <span class="badge bg-danger badge-pill badge-round ml-1">
+                                                <a href="{{URL::to('/vendor/project/permit/delete/'.\Crypt::encrypt($item->id))}}" class="text-decoration-none text-white">X</a>
+                                            </span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
 
-                <div class="row">
-                    <div class="col-5 mt-5">
-                        <button class="btn btn-primary" onclick="stepper1.previous()">Back</button>
-                        <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                    </div>
-                </div>
-              </div>
-              <div id="test-l-3" class="content">
-                <p class="text-center">test 3</p>
-                                <form id="upload" class="" action="{{route('upload_permit')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <label for="formFile" class="form-label">Upload File</label>
-                        <div class="col-8">
-                            <input class="form-control" type="file" id="formFile" accept="application/pdf">
-                        </div>
-                        <div class="col">
-                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success">Upload</button>
-                            <button class="btn btn-sm btn-outline-info" type="button"><i data-feather="plus"></i></button>
-                        </div>
-                    </div>
-                </form>
 
-                <div class="row">
-                    <div class="col-5 mt-5">
-                        <button class="btn btn-primary" onclick="stepper1.previous()">Back</button>
-                        <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                    </div>
-                </div>
-              </div>
-              </div>
-              <div id="test-l-4" class="content">
-                <p class="text-center">test 3</p>
-                                <form id="upload" class="" action="{{route('upload_permit')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <label for="formFile" class="form-label">Upload File</label>
-                        <div class="col-8">
-                            <input class="form-control" type="file" id="formFile" accept="application/pdf">
-                        </div>
-                        <div class="col">
-                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success">Upload</button>
-                            <button class="btn btn-sm btn-outline-info" type="button"><i data-feather="plus"></i></button>
-                        </div>
-                    </div>
-                </form>
-
-                <div class="row">
-                    <div class="col-5 mt-5">
-                        <button class="btn btn-primary" onclick="stepper1.previous()">Back</button>
-                    </div>
-                </div>
-                {{-- <button class="btn btn-primary" onclick="stepper1.next()">Next</button> --}}
-              </div>
-            </div>
         </div>
     </div>
 </div>
