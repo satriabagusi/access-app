@@ -15,7 +15,7 @@
                     @csrf
                     <div class="row">
 
-                        <fieldset class="form-group">
+                        <fieldset class="form-group col-8">
                             <label for="">Jenis Permit</label>
                             <select name="permit_type_id" class="form-select" id="basicSelect">
                                 <option value="1">CSMS</option>
@@ -32,7 +32,9 @@
                             </div>
                         </div>
                         <div class="col">
-                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success float-end">Upload</button>
+                            <button type="submit" form="upload" class="btn btn-sm btn-outline-success float-end">
+                                <i data-feather="upload"></i> Upload
+                            </button>
                         </div>
 
                         @error('permit_file')
@@ -62,7 +64,7 @@
                         <div class="col-9">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show active" id="v-pills-csms" role="tabpanel" aria-labelledby="v-pills-csms-tab">
-                                    @if ($csms)
+                                    @if (!$csms->isEmpty())
                                     <ul class="list-group">
                                     @foreach ($csms as $item)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -74,10 +76,12 @@
                                         @endforeach
                                     </ul>
                                     @else
+                                        <h5 class="mx-auto d-block text-center mb-4">File tidak ditemukan/Belum melakukan upload File</h5>
+                                        <img width="300px" src="{{asset('img/data-empty.png')}}" alt="" class="mx-auto d-block img-fluid">
                                     @endif
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-jsa" role="tabpanel" aria-labelledby="v-pills-jsa-tab">
-                                    @if ($jsa)
+                                    @if (!$jsa->isEmpty())
                                     <ul class="list-group">
                                     @foreach ($jsa as $item)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -89,10 +93,12 @@
                                         @endforeach
                                     </ul>
                                     @else
+                                        <h5 class="mx-auto d-block text-center mb-4">File tidak ditemukan/Belum melakukan upload File</h5>
+                                        <img width="300px" src="{{asset('img/data-empty.png')}}" alt="" class="mx-auto d-block img-fluid">
                                     @endif
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-hsePlan" role="tabpanel" aria-labelledby="v-pills-hsePlan-tab">
-                                    @if ($hse_plan)
+                                    @if (!$hse_plan->isEmpty())
                                     <ul class="list-group">
                                     @foreach ($hse_plan as $item)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -104,10 +110,12 @@
                                         @endforeach
                                     </ul>
                                     @else
+                                        <h5 class="mx-auto d-block text-center mb-4">File tidak ditemukan/Belum melakukan upload File</h5>
+                                        <img width="300px" src="{{asset('img/data-empty.png')}}" alt="" class="mx-auto d-block img-fluid">
                                     @endif
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-formPermit" role="tabpanel" aria-labelledby="v-pills-formPermit-tab">
-                                    @if ($form_permit)
+                                    @if (!$form_permit->isEmpty())
                                     @foreach ($form_permit as $item)
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -119,6 +127,8 @@
                                         @endforeach
                                     </ul>
                                     @else
+                                        <h5 class="mx-auto d-block text-center mb-4">File tidak ditemukan/Belum melakukan upload File</h5>
+                                        <img width="300px" src="{{asset('img/data-empty.png')}}" alt="" class="mx-auto d-block img-fluid">
                                     @endif
                                 </div>
                             </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <title>@yield('page-title')</title>
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
@@ -46,7 +46,11 @@
 
 
                         <li class="sidebar-item @yield('home') ">
-                            <a href="{{URL::to('/dashboard')}}" class='sidebar-link'>
+                            @if (Auth::user()->user_roles->user_role == "vendor")
+                                <a href="{{URL::to('/vendor/home')}}" class='sidebar-link'>
+                            @else
+                                <a href="{{URL::to('/dashboard')}}" class='sidebar-link'>
+                            @endif
                                 <i data-feather="home" width="20"></i>
                                 <span>Home</span>
                             </a>

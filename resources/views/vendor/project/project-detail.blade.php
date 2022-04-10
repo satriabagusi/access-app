@@ -46,8 +46,14 @@
                         </div>
                     </div>
                     <div class="float-end mt-3">
-                        <button id="editBtn" type="button" class="btn btn-primary">Edit Data Kontrak</button>
-                        <button id="submitBtn" type="submit" class="btn btn-primary">Update Data Kontrak</button>
+                        <button id="editBtn" type="button" class="btn btn-outline-primary">
+                            <i data-feather="edit"></i>
+                            Edit Data Kontrak
+                        </button>
+                        <button id="submitBtn" type="submit" class="btn btn-primary">
+                            <i data-feather="check-circle"></i>
+                            Update Data Kontrak
+                        </button>
                     </div>
                 </form>
         </div>

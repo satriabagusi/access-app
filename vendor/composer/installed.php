@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '02ad4de7ff814eefb16abc12c1d0b5d737764b94',
+        'reference' => 'f556a07ba38951d55d71d81908445a49d758b552',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -388,7 +388,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '02ad4de7ff814eefb16abc12c1d0b5d737764b94',
+            'reference' => 'f556a07ba38951d55d71d81908445a49d758b552',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(
@@ -434,6 +434,15 @@
             'install_path' => __DIR__ . '/../maatwebsite/excel',
             'aliases' => array(),
             'reference' => 'd7446f0e808d83be128835c4b403c9e4a65b20f3',
+            'dev_requirement' => false,
+        ),
+        'madnest/madzipper' => array(
+            'pretty_version' => 'v1.1.1',
+            'version' => '1.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../madnest/madzipper',
+            'aliases' => array(),
+            'reference' => '788211daf4555ecdacee341816720437d169c0cc',
             'dev_requirement' => false,
         ),
         'maennchen/zipstream-php' => array(

@@ -19,6 +19,7 @@ class CreateVendorProjectsTable extends Migration
             $table->string('contract_number');
             $table->date('contract_start');
             $table->date('contract_end');
+            $table->integer('status');
             $table->unsignedBigInteger('vendor_id');
             $table->timestamps();
 

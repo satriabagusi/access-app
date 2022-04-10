@@ -36,8 +36,14 @@
                         </td>
                         <td class="text-warning">Upload Permit</td>
                         <td>
-                            <a href="{{url('/vendor/project/permit/'.\Crypt::encrypt($item->id))}})}}" class="btn btn-sm btn-warning mb-2">Permit</a>
-                            <a href="{{url('/vendor/project/detail/'.\Crypt::encrypt($item->id))}}" class="btn btn-success btn-sm ">Kontrak</a>
+                            <a href="{{url('/vendor/project/permit/'.\Crypt::encrypt($item->id))}})}}" class="btn btn-sm btn-warning mb-2">
+                                <i data-feather="file-text"></i>
+                                Permit
+                            </a>
+                            <a href="{{url('/vendor/project/detail/'.\Crypt::encrypt($item->id))}}" class="btn btn-success btn-sm ">
+                                <i data-feather="edit"></i>
+                                Kontrak
+                            </a>
                           </td>
                     </tr>
                     @endforeach
@@ -48,7 +54,10 @@
             </div>
             <div class="card-footer">
                 <div class="float-end">
-                    <a href="{{url('/vendor/add-project')}}" class="btn btn-primary">Tambah Data Pekerjaan</a>
+                    <a href="{{url('/vendor/add-project')}}" class="btn btn-primary">
+                        <i data-feather="file-plus"></i>
+                        Tambah Data Pekerjaan
+                    </a>
                 </div>
             </div>
         </div>

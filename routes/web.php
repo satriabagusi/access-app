@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/vendor/', [VendorsController::class, 'index']);
     Route::get('/dashboard/vendor/detail/{id}', [VendorsController::class, 'show']);
     Route::get('/dashboard/vendor/project/permit/detail/{id}', [VendorPermitsController::class, 'projectPermit']);
+    Route::get('/dashboard/vendor/project/permit/download/{permit_type}&{project_id}', [VendorPermitsController::class, 'downloadZip']);
 
     Route::get('/dashboard/monitor/segel', [PagesController::class, 'monitorSegel']);
 
