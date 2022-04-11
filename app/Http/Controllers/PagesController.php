@@ -17,10 +17,6 @@ class PagesController extends Controller
         }
     }
 
-    public function monitorSegel(){
-        return view('admin.seal-monitoring.monitor-segel');
-    }
-
     public function portal(){
         return view('auth.portal');
     }

@@ -255,6 +255,7 @@
     <script src="{{asset('js/feather-icons/feather.min.js')}}"></script>
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     {{-- <script src="{{asset('js/bootstrap.bundle.js')}}"></script> --}}
+    {{-- <script src="{{asset('js/bootstrap.js')}}"></script> --}}
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 
@@ -268,12 +269,6 @@
     <script src="{{asset('vendors/jquery-mask/jquery.mask.js')}}"></script>
     <script src="{{asset('vendors/datetimepicker/js/tempus-dominus.js')}}"></script>
     <script src="{{asset('vendors/datetimepicker/js/daterangepicker.js')}}"></script>
-
-    <script src="{{asset('vendors/bs-stepper/js/bs-stepper.js')}}"></script>
-    <script src="{{asset('vendors/dropzone/js/dropzone.min.js')}}"></script>
-    <script src="{{asset('vendors/filepond/js/filepond.js')}}"></script>
-    <script src="{{asset('vendors/filepond/js/filepond-plugin-image-preview.js')}}"></script>
-    <script src="{{asset('vendors/filepond/js/filepond.jquery.js')}}"></script>
     <script src="{{asset('vendors/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendors/datatables/dataTables.bootstrap.min.js')}}"></script>
 

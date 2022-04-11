@@ -21,11 +21,11 @@ class CreateTankCarSealsTable extends Migration
             $table->string('top_seal_capture');
             $table->string('side_seal_capture');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('camera_ip_address_id');
+            $table->unsignedBigInteger('camera_gate_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('camera_ip_address_id')->references('id')->on('camera_ip_addresses')->onDelete('cascade');
+            $table->foreign('camera_gate_id')->references('id')->on('camera_gates')->onDelete('cascade');
         });
     }
 

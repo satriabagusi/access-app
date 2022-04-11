@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Access_user;
+use App\Http\Controllers\CameraGatesController;
 use App\Http\Controllers\VendorPermitsController;
 use App\Http\Controllers\VendorProjectsController;
 use App\Http\Controllers\VendorsController;
@@ -126,7 +127,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/vendor/project/permit/detail/{id}', [VendorPermitsController::class, 'projectPermit']);
     Route::get('/dashboard/vendor/project/permit/download/{permit_type}&{project_id}', [VendorPermitsController::class, 'downloadZip']);
 
-    Route::get('/dashboard/monitor/segel', [PagesController::class, 'monitorSegel']);
+    Route::get('/dashboard/monitor/segel', [CameraGatesController::class, 'create']);
+    Route::post('/dashboard/monitor/segel/add', [CameraGatesController::class, 'store'])->name('addCamera');
 
     Route::get('/logout', [AuthController::class, 'logout']);
 
