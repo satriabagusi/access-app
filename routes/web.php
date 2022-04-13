@@ -19,8 +19,10 @@ use App\Http\Controllers\CameraGatesController;
 use App\Http\Controllers\VendorPermitsController;
 use App\Http\Controllers\VendorProjectsController;
 use App\Http\Controllers\VendorsController;
+use App\Vendor_project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 
@@ -127,14 +129,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/vendor/project/permit/detail/{id}', [VendorPermitsController::class, 'projectPermit']);
     Route::get('/dashboard/vendor/project/permit/download/{permit_type}&{project_id}', [VendorPermitsController::class, 'downloadZip']);
 
+    Route::get('/dashboard/vendor/project', [VendorProjectsController::class, 'projectList']);
+
     Route::get('/dashboard/monitor/segel', [CameraGatesController::class, 'create']);
     Route::post('/dashboard/monitor/segel/add', [CameraGatesController::class, 'store'])->name('addCamera');
 
     Route::get('/logout', [AuthController::class, 'logout']);
 
-
     // VENDOR
-
 
     Route::get('/vendor/home', [PagesController::class, 'vendorDashboard']);
 
@@ -151,4 +153,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/vendor/project/permit/{id}', [VendorPermitsController::class, 'show']);
     Route::post('/vendor/project/permit/upload', [VendorPermitsController::class, 'store'])->name('upload_permit');
     Route::get('/vendor/project/permit/delete/{id}', [VendorPermitsController::class, 'destroy']);
+
 });

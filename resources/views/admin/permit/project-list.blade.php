@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
-@section('page-title', 'Detail Vendor '.$vendors->vendor_name)
-@section('permit', 'active')
-{{-- @section('list-employee', 'text-primary') --}}
+@section('page-title', 'Data Proyek Vendor')
+@section('vendor-permit', 'active')
+@section('proyek-data', 'text-primary')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Data Pekerjaan Vendor {{$vendors->vendor_name}}</h4>
+                <h4 class="card-title">Data Proyek Vendor</h4>
             </div>
           <div class="card-content">
               <div class="card-body">
@@ -59,7 +59,7 @@
 
 @push('scripts')
     <script>
-        let table1 = document.querySelector('#table1');
+       let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
     </script>
 @endpush

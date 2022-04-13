@@ -141,11 +141,23 @@
                         @endif
 
                         @if (Auth::user()->user_role_id == 1)
-                            <li class="sidebar-item @yield('permit')">
-                                <a href="{{URL::to('dashboard/vendor/')}}" class='sidebar-link'>
-                                    <i data-feather="file-text" width="20"></i>
+                            <li class="sidebar-item @yield('vendor-permit') has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i data-feather="clock" width="20"></i>
                                     <span>Vendor Permit</span>
                                 </a>
+                                <ul class="submenu @yield('vendor-permit')">
+                                    <li>
+                                        <a class="@yield('vendor-data')" href="{{URL::to('dashboard/vendor/')}}">
+                                            Data Vendor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="@yield('proyek-data')" href="{{URL::to('/dashboard/vendor/project')}}">
+                                            Data Proyek
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         @endif
 
@@ -180,7 +192,6 @@
                                 </li>
                             </ul>
                         </li>
-
 
                         <li class="sidebar-item @yield('vendor-detail') ">
                             <a href="{{URL::to('/vendor/profile')}}" class='sidebar-link'>

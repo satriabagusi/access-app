@@ -12,6 +12,12 @@
             </div>
             <div class="card-content">
                 <div class="card-body">
+                    @if ($masterAccess->isEmpty())
+                    <div class="text-center">
+                        <img class="img-fluid" width="300px" src="{{asset('img/data-empty.png')}}" alt="">
+                        <h5 class="mt-4">Belum ada data</h4>
+                    </div>
+                @else
                   <!-- table hover -->
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
@@ -42,6 +48,7 @@
                 {{-- <div class="col-auto">{{$employees->links()}}</div> --}}
             </div>
         </div>
+        @endif
             <div class="card-footer bg-white">
                 @if (count($masterAccess) < 5)
                 <a href="{{URL::to('/dashboard/master-access-card/add')}}" class="float-end btn btn-primary mb-2" >Tambah Kartu Master</a>

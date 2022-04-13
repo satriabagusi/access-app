@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card shadow">
             <div class="card-body">
-            <h2>Detail Pekerjaan</h2>
+            <h2>Detail Pekerjaan {{$project->vendors->vendor_name}}</h2>
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
@@ -21,7 +21,13 @@
                         <tr>
                             <td>{{$project->project_name}}</td>
                             <td>{{$project->contract_start}}</td>
-                            <td>{{$project->status}}</td>
+                            @if ($project->status == 0)
+                                <td class="text-warning">Upload Permit</td>
+                            @elseif($project->status == 1)
+                                <td class="text-primary">Review by Admin</td>
+                            @elseif($project->status == 2)
+                                <td class="text-success">Skor sudah upload</td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>

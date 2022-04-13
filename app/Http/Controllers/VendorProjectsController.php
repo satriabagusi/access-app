@@ -68,6 +68,7 @@ class VendorProjectsController extends Controller
                 'contract_start' => $request->contract_start,
                 'contract_end' => $request->contract_end,
                 'vendor_id' => Auth::user()->vendors->id,
+                'status' => 0
             ]);
 
             if($insert){
@@ -164,5 +165,10 @@ class VendorProjectsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function projectList(){
+        $projects = Vendor_project::all();
+        return view('admin.permit.project-list', compact('projects'));
     }
 }

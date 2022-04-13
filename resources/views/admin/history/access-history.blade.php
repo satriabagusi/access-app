@@ -35,45 +35,52 @@
           <div class="card-content">
               <div class="card-body">
                   <!-- table hover -->
-                  <div class="table-responsive">
-                      <table class="table table-hover mb-0">
-                          <thead>
-                              <tr>
-                                  <th>No</th>
-                                  <th>Nama Pegawai</th>
-                                  <th>Status</th>
-                                  <th>Nama Departemen</th>
-                                  <th>Divisi</th>
-                                  <th>Nama Perusahaan</th>
-                                  <th>Tanggal</th>
-                                </tr>
-                            </thead>
-                        <tbody>
-
-                            @foreach ($access_history as $item)
+                    @if ($access_history->isEmpty())
+                        <div class="text-center">
+                            <img class="img-fluid" width="300px" src="{{asset('img/data-empty.png')}}" alt="">
+                            <h5 class="mt-4">Belum ada data</h4>
+                        </div>
+                    @else
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->employees->name}}</td>
-                                    @if ($item->access_status == 1)
-                                        <td class="text-primary">Tap In</td>
-                                    @elseif($item->access_status == 2)
-                                        <td class="text-danger">Tap Out</td>
-                                    @endif
-                                    <td>{{$item->employees->departments->department}}</td>
-                                    <td>{{$item->employees->division}}</td>
-                                    <td>{{$item->employees->company}}</td>
-                                    <td>{{$item->created_at}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                </table>
-            </div>
-            <div class="row justify-content-between mt-3">
-                <div class="col-auto mt-1">
-                    Jumlah data ditampilkan : {{$access_history->count()}}
-                </div>
-                <div class="col-auto">{{$access_history->links()}}</div>
-            </div>
+                                    <th>No</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Status</th>
+                                    <th>Nama Departemen</th>
+                                    <th>Divisi</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                @foreach ($access_history as $item)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->employees->name}}</td>
+                                        @if ($item->access_status == 1)
+                                            <td class="text-primary">Tap In</td>
+                                        @elseif($item->access_status == 2)
+                                            <td class="text-danger">Tap Out</td>
+                                        @endif
+                                        <td>{{$item->employees->departments->department}}</td>
+                                        <td>{{$item->employees->division}}</td>
+                                        <td>{{$item->employees->company}}</td>
+                                        <td>{{$item->created_at}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="row justify-content-between mt-3">
+                        <div class="col-auto mt-1">
+                            Jumlah data ditampilkan : {{$access_history->count()}}
+                        </div>
+                        <div class="col-auto">{{$access_history->links()}}</div>
+                    </div>
+                    @endif
         </div>
             <div class="card-footer bg-white">
 

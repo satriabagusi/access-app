@@ -108,7 +108,7 @@ class VendorPermitsController extends Controller
 
     public function projectPermit($id){
         $id = Crypt::decrypt($id);
-        $project = Vendor_project::where('id', $id)->first();
+        $project = Vendor_project::where('id', $id)->with(['vendors'])->first();
         $permit = Vendor_permit::where('vendor_project_id', $id)->get();
         $csms = Vendor_permit::where('vendor_project_id', $id)->where('permit_type_id', 1)->get();
         $jsa = Vendor_permit::where('vendor_project_id', $id)->where('permit_type_id', 2)->get();

@@ -30,8 +30,8 @@
                             </div>
                         <div class="row mb-2 justify-content-center">
                             <div class="col-9 text-center">
-                                <a href="{{url('/vendor/login')}}" class="btn btn-sm btn-warning">Login Sebagai Vendor</a>
-                                <a href="{{url('/login')}}" class="btn btn-sm btn-primary">Login Sebagai Admin</a>
+                                <a href="{{url('/vendor/login')}}" class="btn btn-sm btn-warning mb-3">Login Sebagai Vendor</a>
+                                <a href="{{url('/login')}}" class="btn btn-sm btn-primary mb-3">Login Sebagai Admin</a>
                             </div>
                         </div>
                         </div>

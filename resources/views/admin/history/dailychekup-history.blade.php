@@ -33,6 +33,12 @@
             </div>
           <div class="card-content">
               <div class="card-body">
+                @if ($dcu->isEmpty())
+                <div class="text-center">
+                    <img class="img-fluid" width="300px" src="{{asset('img/data-empty.png')}}" alt="">
+                    <h5 class="mt-4">Belum ada data</h4>
+                </div>
+            @else
                   <!-- table hover -->
                   <div class="table-responsive">
                       <table class="table table-hover mb-0">
@@ -71,6 +77,7 @@
                 <div class="col-auto">{{$dcu->links()}}</div>
             </div>
         </div>
+        @endif
             <div class="card-footer bg-white">
 
             </div>
