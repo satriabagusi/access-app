@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="row justify-content-center mt-2" >
+<div class="row justify-content-center mt-2">
     <p hidden id="getUid"></p>
     <div class="row justify-content-center text-center mb-2">
         <div class="col-6 bg-white p-3 rounded-3 shadow">
@@ -12,42 +12,46 @@
         </div>
     </div>
     <div class="row justify-content-center text-center mb-2">
-            <div class="col mb-3">
-        <div class="h-100 p-5 text-white bg-primary rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalDCU">
-            <h3 class="text-white">Sudah DCU</h3>
-            <h2 class="text-white">
-            <i class="fas fa-heartbeat"></i>
-                {{$total_dcu}}
-            </h2>
+        <div class="col mb-3">
+            <div class="h-100 p-5 text-white bg-primary rounded-3 text-center shadow" data-bs-toggle="modal"
+                data-bs-target="#modalDCU">
+                <h3 class="text-white">Sudah DCU</h3>
+                <h2 class="text-white">
+                    <i class="fas fa-heartbeat"></i>
+                    {{$total_dcu}}
+                </h2>
+            </div>
         </div>
-    </div>
-    <div class="col mb-3">
-        <div class="h-100 p-5 text-white bg-warning rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalRestrictArea">
-            <h3 class="text-white">Area Terbatas</h3>
-            <h2 class="text-white">
-                <i class="fas fa-exclamation-triangle"></i>
-                {{$total_restrictArea}}
-            </h2>
+        <div class="col mb-3">
+            <div class="h-100 p-5 text-white bg-warning rounded-3 text-center shadow" data-bs-toggle="modal"
+                data-bs-target="#modalRestrictArea">
+                <h3 class="text-white">Area Terbatas</h3>
+                <h2 class="text-white">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {{$total_restrictArea}}
+                </h2>
+            </div>
         </div>
-    </div>
-    <div class="col mb-3">
-        <div class="h-100 p-5 text-white bg-success rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalFit">
-            <h3 class="text-white">Pegawai Fit</h3>
-            <h2 class="text-white">
-                <i class="fas fa-temperature-high"></i>
-                {{$total_fit}}
-            </h2>
+        <div class="col mb-3">
+            <div class="h-100 p-5 text-white bg-success rounded-3 text-center shadow" data-bs-toggle="modal"
+                data-bs-target="#modalFit">
+                <h3 class="text-white">Pegawai Fit</h3>
+                <h2 class="text-white">
+                    <i class="fas fa-temperature-high"></i>
+                    {{$total_fit}}
+                </h2>
+            </div>
         </div>
-    </div>
-    <div class="col mb-3">
-        <div class="h-100 p-5 text-white bg-danger rounded-3 text-center shadow" data-bs-toggle="modal" data-bs-target="#modalUnfit">
-            <h3 class="text-white">Pegawai Unfit</h3>
-            <h2 class="text-white">
-                <i class="fas fa-temperature-high"></i>
-                {{$total_unfit}}
-            </h2>
+        <div class="col mb-3">
+            <div class="h-100 p-5 text-white bg-danger rounded-3 text-center shadow" data-bs-toggle="modal"
+                data-bs-target="#modalUnfit">
+                <h3 class="text-white">Pegawai Unfit</h3>
+                <h2 class="text-white">
+                    <i class="fas fa-temperature-high"></i>
+                    {{$total_unfit}}
+                </h2>
+            </div>
         </div>
-    </div>
     </div>
     <div class="col mb-3 ">
         <div class="h-100 p-5 bg-white rounded-3 text-center shadow">
@@ -58,30 +62,30 @@
                 <p id="text_access" class="blink">Tempelkan kartu anda pada reader</p>
             </div>
             <div class="mt-2">
-              <div class="card shadow">
-                <div class="card-body">
-                  <div class="row justify-content-center text-start">
-                      <div class="col-md-auto">
-                          <p class="h3">Nama Pegawai</p>
-                          <p class="h3">Nomor Pegawai</p>
-                          <p class="h3">Bagian/Fungsi</p>
-                          <p class="h3">Status</p>
-                      </div>
-                      <div class="col-md-auto">
-                          <p class="h3">:</p>
-                          <p class="h3">:</p>
-                          <p class="h3">:</p>
-                          <p class="h3">:</p>
-                      </div>
-                      <div class="col-md-auto">
-                          <p class="h3" id="name">-----</p>
-                          <p class="h3" id="employee_number">-----</p>
-                          <p class="h3" id="department">-----</p>
-                          <p class="h3" id="fit_status">-----</p>
-                      </div>
-                  </div>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row justify-content-center text-start">
+                            <div class="col-md-auto">
+                                <p class="h3">Nama Pegawai</p>
+                                <p class="h3">Nomor Pegawai</p>
+                                <p class="h3">Bagian/Fungsi</p>
+                                <p class="h3">Status</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p class="h3">:</p>
+                                <p class="h3">:</p>
+                                <p class="h3">:</p>
+                                <p class="h3">:</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p class="h3" id="name">-----</p>
+                                <p class="h3" id="employee_number">-----</p>
+                                <p class="h3" id="department">-----</p>
+                                <p class="h3" id="fit_status">-----</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
     </div>
@@ -92,9 +96,8 @@
 @endsection
 
 @push('scripts')
-    <script>
-
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
 
             setInterval(clockUpdate, 1000);
             var day = new Array(7);
@@ -303,40 +306,39 @@
                 window.location.reload(1);
             }, 60000);
         });
-    </script>
+</script>
 @endpush
 
 @push('styles')
 <style>
     .blink {
-      animation: blinker 0.9s linear infinite;
-      color: #1c87c9;
-      font-size: 30px;
-      font-weight: bold;
-      font-family: sans-serif;
+        animation: blinker 0.9s linear infinite;
+        color: #1c87c9;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: sans-serif;
     }
 
     .blink-success {
-      /* animation: blinker 2s linear infinite; */
-      color: #9cbb21;
-      font-size: 30px;
-      font-weight: bold;
-      font-family: sans-serif;
+        /* animation: blinker 2s linear infinite; */
+        color: #9cbb21;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: sans-serif;
     }
 
     .blink-danger {
-      /* animation: blinker 2s linear infinite; */
-      color: #ED1B2F;
-      font-size: 30px;
-      font-weight: bold;
-      font-family: sans-serif;
+        /* animation: blinker 2s linear infinite; */
+        color: #ED1B2F;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: sans-serif;
     }
 
     @keyframes blinker {
-      50% {
-        opacity: 0;
-      }
+        50% {
+            opacity: 0;
+        }
     }
-
-  </style>
+</style>
 @endpush

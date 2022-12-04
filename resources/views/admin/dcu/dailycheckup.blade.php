@@ -13,74 +13,92 @@
             <div class="card-content">
                 <div class="card-body">
                     <form id="dcu_input" action="{{route('input-dcu')}}" method="post">
-                    <div class="row">
-                        <h5>Data Pegawai</h5>
-                        <br>
+                        <div class="row">
+                            <h5>Data Pegawai</h5>
+                            <br>
                             @csrf
-                        <div class="col-12 col-md-6">
-                            <div class="form-group has-icon-right">
-                                <label for="uuid_card">Nomor Kartu </label>
-                                <div class="position-relative">
-                                    <input type="text" id="uuid_card" class="form-control @error('uuid_card') is-invalid @enderror" placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}" autocomplete="off" autofocus>
-                                    <button id="btnRemove" type="button" class="btn btn-sm btn-circle btn-danger form-control-icon" style="margin-right: 10px;">
-                                        X
-                                    </button>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group has-icon-right">
+                                    <label for="uuid_card">Nomor Kartu </label>
+                                    <div class="position-relative">
+                                        <input type="text" id="uuid_card"
+                                            class="form-control @error('uuid_card') is-invalid @enderror"
+                                            placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}"
+                                            autocomplete="off" autofocus>
+                                        <button id="btnRemove" type="button"
+                                            class="btn btn-sm btn-circle btn-danger form-control-icon"
+                                            style="margin-right: 10px;">
+                                            X
+                                        </button>
+                                    </div>
+                                    @error('uuid_card')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
-                                @error('uuid_card')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
+                                <button type="button" id="checkEmployee" class="btn btn-primary float-end">Check
+                                    Pegawai</button>
                             </div>
-                            <button type="button" id="checkEmployee" class="btn btn-primary float-end">Check Pegawai</button>
-                        </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="employee_name">Nama Pegawai</label>
-                                <input type="text" id="employee_name" class="form-control @error('employee_name') is-invalid @enderror" placeholder="Nama Pegawai" name="employee_name" value="{{old('employee_name')}}" readonly>
-                                @error('employee_name')
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="employee_name">Nama Pegawai</label>
+                                    <input type="text" id="employee_name"
+                                        class="form-control @error('employee_name') is-invalid @enderror"
+                                        placeholder="Nama Pegawai" name="employee_name" value="{{old('employee_name')}}"
+                                        readonly>
+                                    @error('employee_name')
                                     <span class="text-danger">{{$message}}</span>
-                                @enderror
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <input type="text" id="department"
+                                        class="form-control @error('department') is-invalid @enderror"
+                                        placeholder="Department" value="{{old('department')}}" readonly>
+                                    @error('department')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="employee_number">Nomor Pegawai</label>
+                                    <input type="text" id="employee_number"
+                                        class="form-control @error('employee_number') is-invalid @enderror"
+                                        placeholder="Nomor Pegawai" value="{{old('employee_name')}}" readonly>
+                                    @error('employee_number')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <input type="text" id="department" class="form-control @error('department') is-invalid @enderror" placeholder="Department"  value="{{old('department')}}" readonly>
-                                @error('department')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="employee_number">Nomor Pegawai</label>
-                                <input type="text" id="employee_number" class="form-control @error('employee_number') is-invalid @enderror" placeholder="Nomor Pegawai"  value="{{old('employee_name')}}" readonly>
-                                @error('employee_number')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                            <div class="row dcu-form d-none">
-                                <h5>Data Daily Check Up</h5>
-                                <br>
+                        <hr>
+                        <div class="row dcu-form d-none">
+                            <h5>Data Daily Check Up</h5>
+                            <br>
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
                                     <label for="blood_pressure">Tekanan Darah</label>
-                                    <input type="text" id="blood_pressure" class="form-control @error('blood_pressure') is-invalid @enderror" placeholder="Tekanan darah" name="blood_pressure" value="{{old('blood_pressure')}}" >
+                                    <input type="text" id="blood_pressure"
+                                        class="form-control @error('blood_pressure') is-invalid @enderror"
+                                        placeholder="Tekanan darah" name="blood_pressure"
+                                        value="{{old('blood_pressure')}}">
                                     <p class="small text-secondary">*contoh : 090/80</p>
                                     @error('blood_pressure')
-                                        <span class="text-danger">{{$message}}</span>
+                                    <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
                                     <label for="temperature">Suhu</label>
-                                    <input type="text" id="temperature" class="form-control @error('temperature') is-invalid @enderror" name="temperature" placeholder="Suhu" value="{{old('temperature')}}" >
+                                    <input type="text" id="temperature"
+                                        class="form-control @error('temperature') is-invalid @enderror"
+                                        name="temperature" placeholder="Suhu" value="{{old('temperature')}}">
                                     <p class="small text-secondary">*contoh : 36,95</p>
                                     @error('temperature')
-                                        <span class="text-danger">{{$message}}</span>
+                                    <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -88,25 +106,26 @@
                                 <label for="Fit Status">Fit Status</label>
                                 <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fit_status" id="statusFit" value="1" >
+                                    <input class="form-check-input" type="radio" name="fit_status" id="statusFit"
+                                        value="1">
                                     <label class="form-check-label" for="statusFit">Fit</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fit_status" id="statusUnfit" value="0">
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="fit_status" id="statusUnfit"
+                                        value="0">
                                     <label class="form-check-label" for="statusUnfit">Unfit</label>
-                                  </div>
-                                  @error('fit_status')
-                                    <br>
-                                        <span class="text-danger">{{$message}}</span>
+                                </div>
+                                @error('fit_status')
+                                <br>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary me-1 mb-1">Input Data</button>
                             </div>
-                            </div>
-
-                            </form>
                         </div>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -115,8 +134,8 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
 
             // JQUERY MASK
             $('#blood_pressure').mask('000/000');
@@ -205,5 +224,5 @@
         })
 
         });
-    </script>
+</script>
 @endpush

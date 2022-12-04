@@ -10,24 +10,29 @@
             <div class="card-header">
                 <h4 class="card-title">Data Pegawai</h4>
             </div>
-            <div class="card-content">
-                <div class="card-body">
-                    <form id="add_employee" action="{{route('add-employee')}}" method="post">
-                        @csrf
+            <form id="add_employee" action="{{route('add-employee')}}" method="post">
+                @csrf
+                <div class="card-content">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-md-6">
-                            <div class="form-group has-icon-right">
-                                <label for="uuid_card">Nomor Kartu </label>
-                                <div class="position-relative">
-                                    <input type="text" id="uuid_card" class="form-control @error('uuid_card') is-invalid @enderror" placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}" autocomplete="off" autofocus>
-                                    <button id="btnRemove" type="button" class="btn btn-sm btn-circle btn-danger form-control-icon" style="margin-right: 10px;">
-                                        X
-                                    </button>
-                                </div>
-                                @error('uuid_card')
+                                <div class="form-group has-icon-right">
+                                    <label for="uuid_card">Nomor Kartu </label>
+                                    <div class="position-relative">
+                                        <input type="text" id="uuid_card"
+                                            class="form-control @error('uuid_card') is-invalid @enderror"
+                                            placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}"
+                                            autocomplete="off" autofocus>
+                                        <button id="btnRemove" type="button"
+                                            class="btn btn-sm btn-circle btn-danger form-control-icon"
+                                            style="margin-right: 10px;">
+                                            X
+                                        </button>
+                                    </div>
+                                    @error('uuid_card')
                                     <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class=" col-md-6 form-group">
@@ -69,20 +74,18 @@
                                 @error('company') <span class="text-danger">{{$message}}</span> @enderror
                             </div>
                         </div>
-
+                    </div>
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tambah Data Pegawai</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary ml-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Tambah Data Pegawai</span>
-                    </button>
-                </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-
 
 @endsection
 

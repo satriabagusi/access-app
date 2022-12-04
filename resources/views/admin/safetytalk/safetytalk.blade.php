@@ -11,65 +11,74 @@
                 <h4 class="card-title">Safetytalk Check</h4>
             </div>
             <div class="card-content">
-                <div class="card-body">
-                    <form id="dcu_input" action="{{route('SafetytalkCheck')}}" method="post">
-                    <div class="row">
-                        <h5>Data Pegawai</h5>
-                        <br>
+                <form id="dcu_input" action="{{route('SafetytalkCheck')}}" method="post">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5>Data Pegawai</h5>
+                            <br>
                             @csrf
-                        <div class="col-12 col-md-6">
-                            <div class="form-group has-icon-right">
-                                <label for="uuid_card">Nomor Kartu </label>
-                                <div class="position-relative">
-                                    <input type="text" id="uuid_card" class="form-control @error('uuid_card') is-invalid @enderror" placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}" autocomplete="off" autofocus>
-                                    <button id="btnRemove" type="button" class="btn btn-sm btn-circle btn-danger form-control-icon" style="margin-right: 10px;">
-                                        X
-                                    </button>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group has-icon-right">
+                                    <label for="uuid_card">Nomor Kartu </label>
+                                    <div class="position-relative">
+                                        <input type="text" id="uuid_card"
+                                            class="form-control @error('uuid_card') is-invalid @enderror"
+                                            placeholder="Nomor Kartu" name="uuid_card" value="{{old('uuid_card')}}"
+                                            autocomplete="off" autofocus>
+                                        <button id="btnRemove" type="button"
+                                            class="btn btn-sm btn-circle btn-danger form-control-icon"
+                                            style="margin-right: 10px;">
+                                            X
+                                        </button>
+                                    </div>
+                                    @error('uuid_card')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
-                                @error('uuid_card')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="employee_name">Nama Pegawai</label>
-                                <input type="text" id="employee_name" class="form-control @error('employee_name') is-invalid @enderror" placeholder="Nama Pegawai" name="employee_name" value="{{old('employee_name')}}" readonly>
-                                @error('employee_name')
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="employee_name">Nama Pegawai</label>
+                                    <input type="text" id="employee_name"
+                                        class="form-control @error('employee_name') is-invalid @enderror"
+                                        placeholder="Nama Pegawai" name="employee_name" value="{{old('employee_name')}}"
+                                        readonly>
+                                    @error('employee_name')
                                     <span class="text-danger">{{$message}}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <input type="text" id="department" class="form-control @error('department') is-invalid @enderror" placeholder="Department"  value="{{old('department')}}" readonly>
-                                @error('department')
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <input type="text" id="department"
+                                        class="form-control @error('department') is-invalid @enderror"
+                                        placeholder="Department" value="{{old('department')}}" readonly>
+                                    @error('department')
                                     <span class="text-danger">{{$message}}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6 dcu-form d-none">
-                            <div class="form-group">
-                                <label for="employee_number">Nomor Pegawai</label>
-                                <input type="text" id="employee_number" class="form-control @error('employee_number') is-invalid @enderror" placeholder="Nomor Pegawai"  value="{{old('employee_name')}}" readonly>
-                                @error('employee_number')
+                            <div class="col-12 col-md-6 dcu-form d-none">
+                                <div class="form-group">
+                                    <label for="employee_number">Nomor Pegawai</label>
+                                    <input type="text" id="employee_number"
+                                        class="form-control @error('employee_number') is-invalid @enderror"
+                                        placeholder="Nomor Pegawai" value="{{old('employee_name')}}" readonly>
+                                    @error('employee_number')
                                     <span class="text-danger">{{$message}}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary me-1 mb-1">
-                                    <i data-feather="check-circle" width="20"></i>
-                                    Check Safetytalk
-                                </button>
-                            </div>
-
-                            </form>
-                        </div>
-                </div>
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-primary me-1 mb-1">
+                            <i data-feather="check-circle" width="20"></i>
+                            Check Safetytalk
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -77,8 +86,8 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
 
             // JQUERY MASK
             $('#blood_pressure').mask('000/00');
@@ -169,5 +178,5 @@
         })
 
         });
-    </script>
+</script>
 @endpush

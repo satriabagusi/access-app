@@ -15,25 +15,27 @@
     <link rel="stylesheet" href="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('images/favicon.svg')}}" type="image/x-icon">
-    {{-- <link rel="stylesheet" src="{{asset('vendors/bootstrap-select/css/bootstrap-select.css')}}"> --}}
+    {{--
+    <link rel="stylesheet" src="{{asset('vendors/bootstrap-select/css/bootstrap-select.css')}}"> --}}
 
     <link rel="stylesheet" href="{{asset('vendors/sweetalert2/css/sweetalert2.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/fontawesome/css/all.css')}}">
 
-<style>
-    body {
-        font-family: 'Quicksand', sans-serif;
-        /* background: #e0ebf3; */
-        min-height:100%;
-        background:url('/img/bg-display.jpg') rgba(0, 72, 255, 0.433);
-        background-size:cover;
-        background-blend-mode: multiply;
-    }
-</style>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            /* background: #e0ebf3; */
+            min-height: 100%;
+            background: url('/img/bg-display.jpg') rgba(0, 72, 255, 0.433);
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+    </style>
 
-@stack('styles')
+    @stack('styles')
 
 </head>
+
 <body>
     <div class="container">
         @yield('content')
@@ -42,7 +44,7 @@
     <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('vendors/jquery/jquery-3.6.0.js')}}"></script>
     <script src="{{asset('js/feather-icons/feather.min.js')}}"></script>
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    {{-- <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script> --}}
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 
@@ -59,19 +61,20 @@
 
 
     @if (session()->has('success'))
-        <script>
-            Toast.fire({
+    <script>
+        Toast.fire({
                 icon: 'success',
                 title: '{{session()->get('success')}}'
             })
-        </script>
+    </script>
     @elseif(session()->has('error'))
-        <script>
-            Toast.fire({
+    <script>
+        Toast.fire({
                 icon: 'error',
                 title: '{{session()->get('error')}}'
             })
-        </script>
+    </script>
     @endif
 </body>
+
 </html>

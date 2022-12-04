@@ -27,19 +27,19 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control form-control-user"
-                                    id="username" aria-describedby="usernameHelp"
-                                        placeholder="Username" name="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control form-control-user"
-                                        id="password" name="password" placeholder="Password">
+                                    <input type="text" class="form-control form-control-user" id="username"
+                                        aria-describedby="usernameHelp" placeholder="Username" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control form-control-user" id="password"
+                                        name="password" placeholder="Password">
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block">
                                     Login
                                 </button>
-                                <a href="{{url('/')}}" class="btn btn-outline-warning btn-user btn-block mt-2">Kembali</a>
+                                <a href="{{url('/')}}"
+                                    class="btn btn-outline-warning btn-user btn-block mt-2">Kembali</a>
                             </form>
                         </div>
                     </div>

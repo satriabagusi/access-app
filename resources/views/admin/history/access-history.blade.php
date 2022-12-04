@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="row">
-
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -15,31 +14,38 @@
                     </div>
                     <div class="col-auto">
 
-                        <form method="GET" action="{{URL::to('/dashboarad/history/access/download')}}" class="form-group">
+                        <form method="GET" action="{{URL::to('/dashboarad/history/access/download')}}"
+                            class="form-group">
                             <div class="form-group has-icon-right">
                                 <div id="daterangepicker" class="position-relative">
-                                    <input type="text" class="form-control" placeholder="Date" id="date" name="date" required>
-                                    <input type="hidden" class="form-control" placeholder="Date" id="dateStart" name="dateStart">
-                                    <input type="hidden" class="form-control" placeholder="Date" id="dateEnd" name="dateEnd">
+                                    <input type="text" class="form-control" placeholder="Date" id="date" name="date"
+                                        required>
+                                    <input type="hidden" class="form-control" placeholder="Date" id="dateStart"
+                                        name="dateStart">
+                                    <input type="hidden" class="form-control" placeholder="Date" id="dateEnd"
+                                        name="dateEnd">
                                     <div id="daterangepicker" class="form-control-icon">
                                         <i data-feather="calendar"></i>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-primary" type="submit">Export Selected</button>
-                            <a href="{{URL::to('/dashboarad/history/access/download')}}" class="float-end ml-50 btn btn-primary">Export all to Excel</a>
-                          </form>
+                            <button class="btn btn-primary" type="submit">Export Selected</button>
+                            &nbsp;
+                            <a href="{{URL::to('/dashboarad/history/access/download')}}"
+                                class="float-end ml-50 btn btn-primary">Export all to Excel</a>
+                            &nbsp;
+                        </form>
                     </div>
                 </div>
             </div>
-          <div class="card-content">
-              <div class="card-body">
-                  <!-- table hover -->
+            <div class="card-content">
+                <div class="card-body">
+                    <!-- table hover -->
                     @if ($access_history->isEmpty())
-                        <div class="text-center">
-                            <img class="img-fluid" width="300px" src="{{asset('img/data-empty.png')}}" alt="">
-                            <h5 class="mt-4">Belum ada data</h4>
-                        </div>
+                    <div class="text-center">
+                        <img class="img-fluid" width="300px" src="{{asset('img/data-empty.png')}}" alt="">
+                        <h5 class="mt-4">Belum ada data</h4>
+                    </div>
                     @else
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
@@ -52,23 +58,23 @@
                                     <th>Divisi</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Tanggal</th>
-                                    </tr>
-                                </thead>
+                                </tr>
+                            </thead>
                             <tbody>
                                 @foreach ($access_history as $item)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->employees->name}}</td>
-                                        @if ($item->access_status == 1)
-                                            <td class="text-primary">Tap In</td>
-                                        @elseif($item->access_status == 2)
-                                            <td class="text-danger">Tap Out</td>
-                                        @endif
-                                        <td>{{$item->employees->departments->department}}</td>
-                                        <td>{{$item->employees->division}}</td>
-                                        <td>{{$item->employees->company}}</td>
-                                        <td>{{$item->created_at}}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$item->employees->name}}</td>
+                                    @if ($item->access_status == 1)
+                                    <td class="text-primary">Tap In</td>
+                                    @elseif($item->access_status == 2)
+                                    <td class="text-danger">Tap Out</td>
+                                    @endif
+                                    <td>{{$item->employees->departments->department}}</td>
+                                    <td>{{$item->employees->division}}</td>
+                                    <td>{{$item->employees->company}}</td>
+                                    <td>{{$item->created_at}}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -81,19 +87,19 @@
                         <div class="col-auto">{{$access_history->links()}}</div>
                     </div>
                     @endif
-        </div>
-            <div class="card-footer bg-white">
-
-            </div>
+                </div>
+                <div class="card-footer">
+                    <span>&nbsp;</span>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 @endsection
 
 @push('scripts')
-    <script>
-        $(function() {
+<script>
+    $(function() {
             $('#daterangepicker').daterangepicker({
                 ranges   : {
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -113,5 +119,5 @@
                 },
             )
         });
-    </script>
+</script>
 @endpush
