@@ -39,20 +39,20 @@ use Illuminate\Support\Facades\Response;
 
 
 
-Route::get('/storagelink', function(){
+Route::get('/storagelink', function () {
     return Artisan::call('storage:link');
 });
 
-Route::get('/deleteAccess', function(Request $request) {
-    if($request){
-        if($request->_token == "bqbunilybun"){
+Route::get('/deleteAccess', function (Request $request) {
+    if ($request) {
+        if ($request->_token == "bqbunilybun") {
             // return "ok";
-            $delete = Access_user::where('created_at', '<=',Carbon::now()->subHours(8))->delete();
+            $delete = Access_user::where('created_at', '<=', Carbon::now()->subHours(8))->delete();
             return $delete;
-        }else{
+        } else {
             return "not ok";
         }
-    }else{
+    } else {
         return URL::to('/');
     }
 });
@@ -65,16 +65,16 @@ Route::get('/data/display/container', [ArduinoController::class, 'uidContainer']
 // Route::get('/data/dcu/employee', [DailyCheckUpsController::class, 'checkDataDcu']);
 
 //MODULE/ARDUINO CONTROLLER
-Route::get('/modul/data', [ArduinoController::class, 'getAccess']);
-Route::get('/modul/data/tap', [ArduinoController::class, 'storeAccessHistory']);
-Route::post('/modul/display/data', [ArduinoController::class, 'getUid']);
-Route::post('/modul/safetytalk', [ArduinoController::class, 'safetyTalkCheck']);
+// Route::get('/modul/data', [ArduinoController::class, 'getAccess']);
+// Route::get('/modul/data/tap', [ArduinoController::class, 'storeAccessHistory']);
+// Route::post('/modul/display/data', [ArduinoController::class, 'getUid']);
+// Route::post('/modul/safetytalk', [ArduinoController::class, 'safetyTalkCheck']);
 
 //JQUERY CONTROLLER
 Route::get('/data/dcu/employee', [EmployeesController::class, 'checkEmployee']);
 
 
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['guest'])->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, '__login'])->name('login-post');
@@ -86,7 +86,7 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/vendor/register', [VendorsController::class, 'register']);
     Route::post('/vendor/register', [VendorsController::class, '__register'])->name('register-vendor');
 
-    Route::get('/', function(){
+    Route::get('/', function () {
         return view('auth.portal');
     });
 });
@@ -153,5 +153,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/vendor/project/permit/{id}', [VendorPermitsController::class, 'show']);
     Route::post('/vendor/project/permit/upload', [VendorPermitsController::class, 'store'])->name('upload_permit');
     Route::get('/vendor/project/permit/delete/{id}', [VendorPermitsController::class, 'destroy']);
-
 });
